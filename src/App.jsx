@@ -1,14 +1,4 @@
-// src/App.jsx
-import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import GamePage from './pages/GamePage';
-import './App.css';
-
-// src/App.jsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
