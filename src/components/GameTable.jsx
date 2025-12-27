@@ -1,3 +1,5 @@
+import "../styles/GameTable.css"
+
 const GameTable = ({ results, formatDate }) => {
     return (
         <div className="table-container">

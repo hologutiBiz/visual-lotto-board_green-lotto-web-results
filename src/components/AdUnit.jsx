@@ -1,3 +1,5 @@
+import "../styles/Ad.css"
+
 const AdUnit = ({ position }) => {
     return (
         <div className="ad-unit">

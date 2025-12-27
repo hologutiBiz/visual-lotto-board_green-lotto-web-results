@@ -1,107 +1,158 @@
-import { useState, useEffect } from 'react';
+// src/App.jsx
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import GamePage from './pages/GamePage';
-import './styles/App.css';
+import './App.css';
 
-// Mock data generator (remove when connecting to real Supabase)
-const mockGames = [
-      { id: 1, game_name: 'Naija Vag', slug: 'naija-vag' },
-      { id: 2, game_name: 'Dream Number', slug: 'dream-number' },
-      { id: 3, game_name: 'Odogwu', slug: 'odogwu' },
-      { id: 4, game_name: 'Unlimited', slug: 'unlimited' },
-      { id: 5, game_name: 'Noon Rush', slug: 'noon-rush' },
-      { id: 6, game_name: 'Wazobia', slug: 'wazobia' },
-      { id: 7, game_name: 'Destiny', slug: 'destiny' },
-      { id: 8, game_name: 'Faaji', slug: 'faaji' },
-      { id: 9, game_name: 'Champion', slug: 'champion' },
-      { id: 10, game_name: 'Monday Special', slug: 'monday-special' },
-      { id: 11, game_name: 'Tuesday Lucky', slug: 'tuesday-lucky' },
-      { id: 12, game_name: 'Midweek', slug: 'midweek' },
-      { id: 13, game_name: 'Fortune', slug: 'fortune' },
-      { id: 14, game_name: 'Bonanza', slug: 'bonanza' },
-      { id: 15, game_name: 'National', slug: 'national' },
-      { id: 16, game_name: 'Aseda', slug: 'aseda' }
-  ];
-
-const generateMockResult = (gameId, date = new Date()) => ({
-    id: Math.random(),
-    game_id: gameId,
-    draw_number: Math.floor(Math.random() * 9000) + 1000,
-    draw_date: date.toISOString().split('T')[0],
-    draw_time: `${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')} ${Math.random() > 0.5 ? 'PM' : 'AM'}`,
-    machine: String(Math.floor(Math.random() * 5) + 1),
-    winning_numbers: Array.from({ length: 5 }, () => Math.floor(Math.random() * 90) + 1).sort((a, b) => a - b),
-    machine_numbers: Array.from({ length: 5 }, () => Math.floor(Math.random() * 90) + 1).sort((a, b) => a - b)
-});
+// src/App.jsx
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import GamePage from './pages/GamePage';
+import { getGames, getTodayResults, getResultsByDate, getGameResults } from './utils/supabase';
+import './App.css';
 
 const App = () => {
-    const [currentView, setCurrentView] = useState('home');
-    const [selectedGame, setSelectedGame] = useState(null);
-    const [games, setGames] = useState([]);
-    const [todayResults, setTodayResults] = useState([]);
-    const [gameResults, setGameResults] = useState([]);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentView, setCurrentView] = useState('home');
+  const [selectedGame, setSelectedGame] = useState(null);
+  const [games, setGames] = useState([]);
+  const [todayResults, setTodayResults] = useState([]);
+  const [gameResults, setGameResults] = useState([]);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const formatDate = (date) => {
-        const d = new Date(date);
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        const day = d.getDate();
-        const suffix = day === 1 || day === 21 || day === 31 ? 'st' : 
-                    day === 2 || day === 22 ? 'nd' : 
-                    day === 3 || day === 23 ? 'rd' : 'th';
-        return `${months[d.getMonth()]} ${days[d.getDay()]} ${day}${suffix}, ${d.getFullYear()}`;
+  // Format date: "Jan Thu 1st, 2026"
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const day = d.getDate();
+    const suffix = day === 1 || day === 21 || day === 31 ? 'st' : 
+                   day === 2 || day === 22 ? 'nd' : 
+                   day === 3 || day === 23 ? 'rd' : 'th';
+    return `${months[d.getMonth()]} ${days[d.getDay()]} ${day}${suffix}, ${d.getFullYear()}`;
+  };
+
+  // Initialize games and today's results from Supabase
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Fetch games
+        const gamesData = await getGames();
+        setGames(gamesData);
+
+        // Fetch today's results
+        const todayData = await getTodayResults();
+        setTodayResults(todayData);
+
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching data:', err);
+        setError('Failed to load data. Please check your internet connection.');
+        setLoading(false);
+      }
     };
 
-    useEffect(() => {
-        setGames(mockGames);
-        const today = mockGames.map(game => generateMockResult(game.id));
-        setTodayResults(today);
-    }, []);
+    fetchInitialData();
+  }, []);
 
-    useEffect(() => {
-        if (selectedGame) {
-            const results = [];
-            for (let i = 0; i < 50; i++) {
-                const date = new Date();
-                date.setDate(date.getDate() - i);
-                results.push(generateMockResult(selectedGame.id, date));
-            }
-            setGameResults(results);
+  // Load game results when a game is selected
+  useEffect(() => {
+    const fetchGameResults = async () => {
+      if (selectedGame) {
+        try {
+          setLoading(true);
+          const results = await getGameResults(selectedGame.id);
+          setGameResults(results);
+          setLoading(false);
+        } catch (err) {
+          console.error('Error fetching game results:', err);
+          setError('Failed to load game results.');
+          setLoading(false);
         }
-    }, [selectedGame]);
-
-    const handleGameClick = (game) => {
-        setSelectedGame(game);
-        setCurrentView('game');
-        setMobileMenuOpen(false);
+      }
     };
 
-    const handleHomeClick = () => {
-        setCurrentView('home');
-        setSelectedGame(null);
-        setMobileMenuOpen(false);
-    };
+    fetchGameResults();
+  }, [selectedGame]);
+
+  const handleGameClick = (game) => {
+    setSelectedGame(game);
+    setCurrentView('game');
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleHomeClick = () => {
+    setCurrentView('home');
+    setSelectedGame(null);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleDateSearch = async (searchDate) => {
+    try {
+      setLoading(true);
+      const results = await getResultsByDate(searchDate);
+      setLoading(false);
+      return results;
+    } catch (err) {
+      console.error('Error searching by date:', err);
+      setLoading(false);
+      return [];
+    }
+  };
+
+  if (loading && games.length === 0) {
+    return (
+      <div className="app">
+        <div className="loading-screen">
+          <div className="loading-spinner"></div>
+          <p>Loading Green Lotto results...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error && games.length === 0) {
+    return (
+      <div className="app">
+        <div className="error-screen">
+          <h2>Oops! Something went wrong</h2>
+          <p>{error}</p>
+          <button onClick={() => window.location.reload()} className="retry-btn">
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
-      <div className="app">
-          <Header
-              onHomeClick={handleHomeClick}
-              mobileMenuOpen={mobileMenuOpen}
-              setMobileMenuOpen={setMobileMenuOpen}
-              games={games}
-              onGameClick={handleGameClick}
-          />
+    <div className="app">
+      <Header
+        onHomeClick={handleHomeClick}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        games={games}
+        onGameClick={handleGameClick}
+      />
 
-        <div className="main-container">
-          <Sidebar
-              games={games}
-              selectedGame={selectedGame}
-              onGameClick={handleGameClick}
-          />
+      <div className="main-container">
+        <Sidebar
+          games={games}
+          selectedGame={selectedGame}
+          onGameClick={handleGameClick}
+        />
 
         <main className="main-content">
           {currentView === 'home' ? (
@@ -110,6 +161,7 @@ const App = () => {
               games={games}
               formatDate={formatDate}
               onGameClick={handleGameClick}
+              onDateSearch={handleDateSearch}
             />
           ) : (
             <GamePage
