@@ -1,0 +1,96 @@
+/* ===== RESULT CARD ===== */
+.result-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-left: 4px solid var(--green-primary);
+  transition: box-shadow 0.2s;
+}
+
+.result-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.result-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.result-card-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: var(--gray-800);
+}
+
+.result-card-meta {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+}
+
+.result-card-time {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+}
+
+.result-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.number-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.number-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+.number-balls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.number-ball {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.number-ball.winning {
+  background: linear-gradient(to bottom right, var(--green-primary), var(--green-dark));
+}
+
+.number-ball.machine {
+  background: linear-gradient(to bottom right, var(--blue-primary), var(--blue-dark));
+}
+
+.view-all-btn {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--green-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.view-all-btn:hover {
+  background-color: var(--green-dark);
+}
