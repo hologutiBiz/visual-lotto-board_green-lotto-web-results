@@ -75,7 +75,8 @@
 }
 
 .number-ball.machine {
-  background: linear-gradient(to bottom right, var(--blue-primary), var(--blue-dark));
+  /* background: linear-gradient(to bottom right, var(--blue-primary), var(--blue-dark)); */
+  background-color: #ff0000;
 }
 
 .view-all-btn {

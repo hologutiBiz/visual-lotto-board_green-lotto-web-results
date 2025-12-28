@@ -1,9 +1,11 @@
+// src/App.jsx
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
+import Header from './components/Header'
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import GamePage from './pages/GamePage';
+import AllResultsPage from './pages/AllResultsPage';
 import { getGames, getTodayResults, getResultsByDate, getGameResults } from './utils/supabase';
 import './App.css';
 
@@ -89,6 +91,13 @@ const App = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleAllResultsClick = () => {
+    setCurrentView('allresults');
+    setSelectedGame(null);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleDateSearch = async (searchDate) => {
     try {
       setLoading(true);
@@ -131,6 +140,7 @@ const App = () => {
     <div className="app">
       <Header
         onHomeClick={handleHomeClick}
+        onAllResultsClick={handleAllResultsClick}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
         games={games}
@@ -152,6 +162,11 @@ const App = () => {
               formatDate={formatDate}
               onGameClick={handleGameClick}
               onDateSearch={handleDateSearch}
+            />
+          ) : currentView === 'allresults' ? (
+            <AllResultsPage
+              games={games}
+              onGameClick={handleGameClick}
             />
           ) : (
             <GamePage

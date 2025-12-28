@@ -5,6 +5,8 @@ import AdUnit from '../components/AdUnit';
 import "../styles/HomePage.css"
 
 
+
+
 const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }) => {
   const [searchDate, setSearchDate] = useState('');
   const [displayResults, setDisplayResults] = useState(todayResults);
@@ -40,34 +42,6 @@ const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }
 
   return (
     <div className="home-page">
-      {/* Logo & Navigation */}
-      <div className="top-bar">
-        <div className="logo-section">
-          <div className="logo-placeholder">
-            {/* Replace with actual logo image */}
-            <span className="logo-icon">🎰</span>
-          </div>
-          <div className="logo-text">
-            <h2>Visual Lotto Board</h2>
-            <p>Green Lotto Results</p>
-          </div>
-        </div>
-        <nav className="top-nav">
-          <a href="https://visuallottoboard.com/about" target="_blank" rel="noopener noreferrer" className="nav-item">
-            <Info size={16} />
-            About
-          </a>
-          <a href="https://visuallottoboard.com/contact" target="_blank" rel="noopener noreferrer" className="nav-item">
-            <Mail size={16} />
-            Contact
-          </a>
-          <a href="https://visuallottoboard.com/signup" target="_blank" rel="noopener noreferrer" className="nav-item signup">
-            <UserPlus size={16} />
-            Sign Up
-          </a>
-        </nav>
-      </div>
-
       {/* Navigation Guide */}
       <div className="navigation-guide">
         <h2 className="guide-title">How to Check Results</h2>
@@ -159,28 +133,6 @@ const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }
       </div>
 
       <AdUnit position="Bottom Banner" />
-
-      {/* Quick Links Section */}
-      <div className="quick-links">
-        <div className="quick-link-card">
-          <Info size={24} />
-          <h3>About Us</h3>
-          <p>Learn more about Visual Lotto Board and our commitment to accurate, real-time lottery results.</p>
-          <a href="https://visuallottoboard.com/about" target="_blank" rel="noopener noreferrer" className="link-btn">Learn More</a>
-        </div>
-        <div className="quick-link-card">
-          <Mail size={24} />
-          <h3>Contact</h3>
-          <p>Have questions or feedback? Get in touch with our support team.</p>
-          <a href="https://visuallottoboard.com/contact" target="_blank" rel="noopener noreferrer" className="link-btn">Contact Us</a>
-        </div>
-        <div className="quick-link-card">
-          <UserPlus size={24} />
-          <h3>Sign Up</h3>
-          <p>Create an account to get notifications and personalized features.</p>
-          <a href="https://visuallottoboard.com/signup" target="_blank" rel="noopener noreferrer" className="link-btn">Sign Up Now</a>
-        </div>
-      </div>
     </div>
   );
 };

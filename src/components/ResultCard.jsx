@@ -40,7 +40,7 @@ const ResultCard = ({ result, game, onViewAll }) => {
             </div>
         
             <button onClick={onViewAll} className="view-all-btn">
-                View All Results
+                View All <b>{game.game_name}</b> Results
             </button>
         </div>
     );
