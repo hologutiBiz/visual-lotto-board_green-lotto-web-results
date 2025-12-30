@@ -8,7 +8,6 @@ import GamePage from './pages/GamePage';
 import AllResultsPage from './pages/AllResultsPage';
 import { getGames, getTodayResults, getResultsByDate, getGameResults } from './utils/supabase';
 import './App.css';
-import Header from "./components/Header";
 
 const App = () => {
   const [currentView, setCurrentView] = useState('home');
@@ -139,14 +138,14 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header
+      {/* <Header
         onHomeClick={handleHomeClick}
         onAllResultsClick={handleAllResultsClick}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
         games={games}
         onGameClick={handleGameClick}
-      />
+      /> */}
 
       <div className="main-container">
         <Sidebar
