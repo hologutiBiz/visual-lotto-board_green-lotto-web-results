@@ -1,6 +1,6 @@
 // src/App.jsx
 import { useState, useEffect } from 'react';
-import Header from './components/Header'
+// import Header from './components/Header'
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -8,6 +8,7 @@ import GamePage from './pages/GamePage';
 import AllResultsPage from './pages/AllResultsPage';
 import { getGames, getTodayResults, getResultsByDate, getGameResults } from './utils/supabase';
 import './App.css';
+import Header from "./components/Header";
 
 const App = () => {
   const [currentView, setCurrentView] = useState('home');
