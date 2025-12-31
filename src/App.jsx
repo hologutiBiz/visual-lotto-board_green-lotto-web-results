@@ -1,7 +1,7 @@
 // src/App.jsx
 import { useState, useEffect } from 'react';
-// import Header from './components/Header'
-import Header from './components/Header';
+import Header from './components/Header'
+// import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -11,26 +11,26 @@ import { getGames, getTodayResults, getResultsByDate, getGameResults } from './u
 import './App.css';
 
 const App = () => {
-  const [currentView, setCurrentView] = useState('home');
-  const [selectedGame, setSelectedGame] = useState(null);
-  const [games, setGames] = useState([]);
-  const [todayResults, setTodayResults] = useState([]);
-  const [gameResults, setGameResults] = useState([]);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+    const [currentView, setCurrentView] = useState('home');
+    const [selectedGame, setSelectedGame] = useState(null);
+    const [games, setGames] = useState([]);
+    const [todayResults, setTodayResults] = useState([]);
+    const [gameResults, setGameResults] = useState([]);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
   // Format date: "Jan Thu 1st, 2026"
-  const formatDate = (date) => {
-      const d = new Date(date);
-      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-      const day = d.getDate();
-      const suffix = day === 1 || day === 21 || day === 31 ? 'st' : 
-                    day === 2 || day === 22 ? 'nd' : 
-                    day === 3 || day === 23 ? 'rd' : 'th';
-      return `${months[d.getMonth()]} ${days[d.getDay()]} ${day}${suffix}, ${d.getFullYear()}`;
-  };
+    const formatDate = (date) => {
+        const d = new Date(date);
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const day = d.getDate();
+        const suffix = day === 1 || day === 21 || day === 31 ? 'st' : 
+                      day === 2 || day === 22 ? 'nd' : 
+                      day === 3 || day === 23 ? 'rd' : 'th';
+        return `${months[d.getMonth()]} ${days[d.getDay()]} ${day}${suffix}, ${d.getFullYear()}`;
+    };
 
   // Initialize games and today's results from Supabase
   useEffect(() => {
