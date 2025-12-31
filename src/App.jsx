@@ -1,7 +1,6 @@
 // src/App.jsx
 import { useState, useEffect } from 'react';
-import Header from './components/Header'
-// import Header from './components/Header';
+import Header from './components/Header.jsx'
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
