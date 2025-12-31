@@ -1,6 +1,7 @@
 // src/App.jsx
 import { useState, useEffect } from 'react';
 // import Header from './components/Header'
+import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -21,14 +22,14 @@ const App = () => {
 
   // Format date: "Jan Thu 1st, 2026"
   const formatDate = (date) => {
-    const d = new Date(date);
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const day = d.getDate();
-    const suffix = day === 1 || day === 21 || day === 31 ? 'st' : 
-                   day === 2 || day === 22 ? 'nd' : 
-                   day === 3 || day === 23 ? 'rd' : 'th';
-    return `${months[d.getMonth()]} ${days[d.getDay()]} ${day}${suffix}, ${d.getFullYear()}`;
+      const d = new Date(date);
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      const day = d.getDate();
+      const suffix = day === 1 || day === 21 || day === 31 ? 'st' : 
+                    day === 2 || day === 22 ? 'nd' : 
+                    day === 3 || day === 23 ? 'rd' : 'th';
+      return `${months[d.getMonth()]} ${days[d.getDay()]} ${day}${suffix}, ${d.getFullYear()}`;
   };
 
   // Initialize games and today's results from Supabase
@@ -138,14 +139,15 @@ const App = () => {
 
   return (
     <div className="app">
-      {/* <Header
+        <Header
+      
         onHomeClick={handleHomeClick}
         onAllResultsClick={handleAllResultsClick}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
         games={games}
         onGameClick={handleGameClick}
-      /> */}
+      /> 
 
       <div className="main-container">
         <Sidebar
