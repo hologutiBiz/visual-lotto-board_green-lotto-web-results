@@ -1,9 +1,9 @@
 /* src/components/Header.css */
 
 .site-header {
-  background: linear-gradient(to right, #16a34a, #22c55e);
+  /* background: linear-gradient(to right, #16a34a, #22c55e); */
   color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   position: sticky;
   top: 0;
   z-index: 50;
@@ -20,11 +20,21 @@
   align-items: center;
   justify-content: space-between;
   height: 64px;
+
+  background: white;
+  /* border-radius: 8px; */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .logo {
   border-radius: 50%;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 
 .brand-btn {
@@ -42,12 +52,14 @@
 }
 
 .brand-name {
+  color: #2282c7;
   font-size: 0.9rem;
   margin: 0;
   opacity: 0.9;
 }
 
 .brand-subtitle {
+  color: #16a34a;
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
@@ -79,7 +91,7 @@
   padding: 0.5rem 1rem;
   background: none;
   border: none;
-  color: white;
+  color: #000;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.2s;
