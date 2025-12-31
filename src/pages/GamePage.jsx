@@ -24,7 +24,7 @@ const GamePage = ({ selectedGame, gameResults, formatDate, onHomeClick }) => {
                 </div>
             </div>
 
-            <AdUnit position="Game Page Top" />
+            {/* <AdUnit position="Game Page Top" /> */}
 
             <div className="search-box">
                 <div className="search-input-group">
@@ -45,7 +45,7 @@ const GamePage = ({ selectedGame, gameResults, formatDate, onHomeClick }) => {
             </div>
 
             <GameTable results={gameResults} formatDate={formatDate} />
-            <AdUnit position="Game Page Bottom" />
+            {/* <AdUnit position="Game Page Bottom" /> */}
         </div>
     );
 };

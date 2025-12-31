@@ -42,16 +42,15 @@
 }
 
 .brand-name {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 0.9rem;
   margin: 0;
-  line-height: 1.2;
+  opacity: 0.9;
 }
 
 .brand-subtitle {
-  font-size: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: bold;
   margin: 0;
-  opacity: 0.9;
 }
 
 .mobile-menu-btn {
@@ -146,6 +145,6 @@
   }
 
   .brand-name {
-    font-size: 1.75rem;
+    /* font-size: 1.75rem; */
   }
 }

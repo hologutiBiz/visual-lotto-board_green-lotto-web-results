@@ -7,11 +7,11 @@ const Header = ({ onHomeClick, onAllResultsClick, mobileMenuOpen, setMobileMenuO
       <header className="site-header">
       <div className="header-container">
         <div className="header-content">
-          <img className='logo' src="https://res.cloudinary.com/ddatfadov/image/upload/v1749649983/VLB_logo_gpiyzr.png" alt="logo" width={50}/>
+          <img className='logo' src="https://res.cloudinary.com/ddatfadov/image/upload/v1749649983/VLB_logo_gpiyzr.png" alt="logo" width={40}/>
 
           <button onClick={onHomeClick} className="brand-btn">
-            <h1 className="brand-name">Visual Lotto Board</h1>
-            <p className="brand-subtitle">Green Lotto Results</p>
+            <p className="brand-name">Visual Lotto Board</p>
+            <h1 className="brand-subtitle">Green Lotto Results</h1>
           </button>
           
           <button
