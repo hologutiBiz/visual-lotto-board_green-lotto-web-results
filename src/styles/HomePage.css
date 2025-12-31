@@ -190,11 +190,8 @@
 .results-grid {
   display: flex;
   flex-direction: column;
-  /* grid-template-rows: auto; */
-  /* grid-template-columns: auto; */
   gap: 1.5rem;
-  /* grid-template-columns: 1fr; */
-  background-color: red;
+  
 }
 
 .no-results {
