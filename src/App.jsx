@@ -87,20 +87,15 @@ const App = () => {
                     // const json = await response.json();
 
                     if (json.success && json.data) {
-                        if (json.data.results && json.data.results.length > 0) {
-                            // Transform API data to match the format GameTable expects
-                            const transformedResults = json.data.results.map(result => ({
-                                id: result.drawNumber,
-                                draw_date: result.date,
-                                draw_time: result.time,
-                                winning_numbers: result.winning,
-                                machine_numbers: result.machine
-                            }));
-                            setGameResults(transformedResults);
-                        } else {
-                            setError("No past results available for this game.");
-                            setGameResults([]);
-                        }
+                        // Transform API data to match the format GameTable expects
+                        const transformedResults = json.data.results.map(result => ({
+                            id: result.drawNumber,
+                            draw_date: result.date,
+                            draw_time: result.time,
+                            winning_numbers: result.winning,
+                            machine_numbers: result.machine
+                        }));
+                        setGameResults(transformedResults);
                     } else {
                         throw new Error(json.message || 'Failed to fetch results');
                     }

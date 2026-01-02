@@ -7,6 +7,14 @@
   overflow: hidden;
 }
 
+.no-results {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+  font-style: italic;
+}
+
+
 .table-wrapper {
   overflow-x: auto;
 }
