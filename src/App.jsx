@@ -68,7 +68,7 @@ const App = () => {
                     const year = new Date().getFullYear();
 
                     const response = await fetch(
-                        `${apiUrl}/.netlify/functions/green-lotto-api/get-game-results?gameId=${selectedGame.id}&year=${year}`
+                        `${apiUrl}?gameId=${selectedGame.id}&year=${year}`
                     );
 
                     if (!response.ok) {
@@ -76,6 +76,7 @@ const App = () => {
                     }
 
                     const json = await response.json();
+                    console.log(response) // debugging response
 
                     if (json.success && json.data) {
                         // Transform API data to match the format GameTable expects
@@ -102,7 +103,7 @@ const App = () => {
             }
         };
 
-      fetchGameResults();
+        fetchGameResults();
     }, [selectedGame]);
 
     const handleGameClick = (game) => {
