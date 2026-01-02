@@ -76,8 +76,8 @@ const App = () => {
                     }
 
                     let json; 
-                    try 
-                        { json = JSON.parse(text); 
+                    try { 
+                        json = JSON.parse(text); 
                     } catch (err) { 
                         console.error("Failed to parse JSON:", err, text); 
                         setError("Invalid API response"); 
@@ -87,16 +87,20 @@ const App = () => {
                     // const json = await response.json();
 
                     if (json.success && json.data) {
-                        // Transform API data to match the format GameTable expects
-                        const transformedResults = json.data.results.map(result => ({
-                            id: result.drawNumber,
-                            draw_date: result.date,
-                            draw_time: result.time,
-                            winning_numbers: result.winning,
-                            machine_numbers: result.machine
-                        }));
-
-                        setGameResults(transformedResults);
+                        if (json.data.results && json.data.results.length > 0) {
+                            // Transform API data to match the format GameTable expects
+                            const transformedResults = json.data.results.map(result => ({
+                                id: result.drawNumber,
+                                draw_date: result.date,
+                                draw_time: result.time,
+                                winning_numbers: result.winning,
+                                machine_numbers: result.machine
+                            }));
+                            setGameResults(transformedResults);
+                        } else {
+                            setError("No past results available for this game.");
+                            setGameResults([]);
+                        }
                     } else {
                         throw new Error(json.message || 'Failed to fetch results');
                     }
