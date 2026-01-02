@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Home, Search } from 'lucide-react';
 import GameTable from '../components/GameTable';
 import AdUnit from '../components/AdUnit';
@@ -6,10 +6,27 @@ import "../styles/GamePage.css";
 
 const GamePage = ({ selectedGame, gameResults, formatDate, onHomeClick }) => {
     const [searchDate, setSearchDate] = useState('');
+    const [filteredResults, setFilteredResults] = useState(gameResults);
+
+    // Update filtered results when gameResults changes
+    useEffect(() => {
+        setFilteredResults(gameResults);
+    }, [gameResults]);
 
     const handleSearch = () => {
-        // Search functionality will be implemented with Supabase
-        console.log('Searching for:', searchDate);
+        if (!searchDate) {
+            setFilteredResults(gameResults);
+            return; 
+        }
+        
+        // Filter results by selected date
+        const filtered = gameResults.filter(result => result.draw_date === searchDate);
+        setFilteredResults(filtered);
+
+        const handleClearSearch = () => {
+            setSearchDate('');
+            setFilteredResults(gameResults);
+        };
     };
 
     return (
@@ -42,6 +59,12 @@ const GamePage = ({ selectedGame, gameResults, formatDate, onHomeClick }) => {
                     <Search size={18} />
                         Search
                 </button>
+
+                {searchDate && (
+                    <button onClick={handleClearSearch} className="clear-btn">
+                        Clear
+                    </button>
+                )}
             </div>
 
             <GameTable results={gameResults} formatDate={formatDate} />

@@ -31,158 +31,185 @@ const App = () => {
         return `${months[d.getMonth()]} ${days[d.getDay()]} ${day}${suffix}, ${d.getFullYear()}`;
     };
 
-  // Initialize games and today's results from Supabase
-  useEffect(() => {
-    const fetchInitialData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
+    // Initialize games and today's results from Supabase
+    useEffect(() => {
+        const fetchInitialData = async () => {
+            try {
+                setLoading(true);
+                setError(null);
 
-        // Fetch games
-        const gamesData = await getGames();
-        setGames(gamesData);
+                // Fetch games
+                const gamesData = await getGames();
+                setGames(gamesData);
 
-        // Fetch today's results
-        const todayData = await getTodayResults();
-        setTodayResults(todayData);
+                // Fetch today's results
+                const todayData = await getTodayResults();
+                setTodayResults(todayData);
 
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching data:', err);
-        setError('Failed to load data. Please check your internet connection.');
-        setLoading(false);
-      }
+                setLoading(false);
+            } catch (err) {
+                console.error('Error fetching data:', err);
+                setError('Failed to load data. Please check your internet connection.');
+                setLoading(false);
+            }
+        };
+
+        fetchInitialData();
+    }, []);
+
+    // Load game results when a game is selected
+    useEffect(() => {
+        const fetchGameResults = async () => {
+            if (selectedGame) {
+                try {
+                    setLoading(true);
+                    
+                    const apiUrl = import.meta.env.VITE_RESULT_API_URL;
+                    const year = new Date().getFullYear();
+
+                    const response = await fetch(
+                        `${apiUrl}/.netlify/functions/green-lotto-api/get-game-results?gameId=${selectedGame.id}&year=${year}`
+                    );
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const json = await response.json();
+
+                    if (json.success && json.data) {
+                        // Transform API data to match the format GameTable expects
+                        const transformedResults = json.data.results.map(result => ({
+                            id: result.drawNumber,
+                            draw_date: result.date,
+                            draw_time: result.time,
+                            winning_numbers: result.winning,
+                            machine_numbers: result.machine
+                        }));
+
+                        setGameResults(transformedResults);
+                    } else {
+                        throw new Error(json.message || 'Failed to fetch results');
+                    }
+
+                    setLoading(false);
+                } catch (err) {
+                    console.error('Error fetching game results:', err);
+                    setError('Failed to load game results.');
+                    setGameResults([]);
+                    setLoading(false);
+                }
+            }
+        };
+
+      fetchGameResults();
+    }, [selectedGame]);
+
+    const handleGameClick = (game) => {
+        setSelectedGame(game);
+        setCurrentView('game');
+        setMobileMenuOpen(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    fetchInitialData();
-  }, []);
+    const handleHomeClick = () => {
+        setCurrentView('home');
+        setSelectedGame(null);
+        setMobileMenuOpen(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
-  // Load game results when a game is selected
-  useEffect(() => {
-    const fetchGameResults = async () => {
-      if (selectedGame) {
+    const handleAllResultsClick = () => {
+        setCurrentView('allresults');
+        setSelectedGame(null);
+        setMobileMenuOpen(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handleDateSearch = async (searchDate) => {
         try {
-          setLoading(true);
-          const results = await getGameResults(selectedGame.id);
-          setGameResults(results);
-          setLoading(false);
+            setLoading(true);
+            const results = await getResultsByDate(searchDate);
+            setLoading(false);
+           return results;
         } catch (err) {
-          console.error('Error fetching game results:', err);
-          setError('Failed to load game results.');
-          setLoading(false);
+            console.error('Error searching by date:', err);
+            setLoading(false);
+            return [];
         }
-      }
     };
 
-    fetchGameResults();
-  }, [selectedGame]);
-
-  const handleGameClick = (game) => {
-    setSelectedGame(game);
-    setCurrentView('game');
-    setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleHomeClick = () => {
-    setCurrentView('home');
-    setSelectedGame(null);
-    setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleAllResultsClick = () => {
-    setCurrentView('allresults');
-    setSelectedGame(null);
-    setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleDateSearch = async (searchDate) => {
-    try {
-      setLoading(true);
-      const results = await getResultsByDate(searchDate);
-      setLoading(false);
-      return results;
-    } catch (err) {
-      console.error('Error searching by date:', err);
-      setLoading(false);
-      return [];
+    if (loading && games.length === 0) {
+        return (
+            <div className="app">
+                <div className="loading-screen">
+                    <div className="loading-spinner"></div>
+                    <p>Loading Green Lotto results...</p>
+                </div>
+            </div>
+        );
     }
-  };
 
-  if (loading && games.length === 0) {
+    if (error && games.length === 0) {
+        return (
+            <div className="app">
+                <div className="error-screen">
+                    <h2>Oops! Something went wrong</h2>
+                    <p>{error}</p>
+                    <button onClick={() => window.location.reload()} className="retry-btn">
+                      Try Again
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
     return (
-      <div className="app">
-        <div className="loading-screen">
-          <div className="loading-spinner"></div>
-          <p>Loading Green Lotto results...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error && games.length === 0) {
-    return (
-      <div className="app">
-        <div className="error-screen">
-          <h2>Oops! Something went wrong</h2>
-          <p>{error}</p>
-          <button onClick={() => window.location.reload()} className="retry-btn">
-            Try Again
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="app">
-        <Header
-      
-        onHomeClick={handleHomeClick}
-        onAllResultsClick={handleAllResultsClick}
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}
-        games={games}
-        onGameClick={handleGameClick}
-      /> 
-
-      <div className="main-container">
-        <Sidebar
-          games={games}
-          selectedGame={selectedGame}
-          onGameClick={handleGameClick}
-        />
-
-        <main className="main-content">
-          {currentView === 'home' ? (
-            <HomePage
-              todayResults={todayResults}
-              games={games}
-              formatDate={formatDate}
-              onGameClick={handleGameClick}
-              onDateSearch={handleDateSearch}
-            />
-          ) : currentView === 'allresults' ? (
-            <AllResultsPage
-              games={games}
-              onGameClick={handleGameClick}
-            />
-          ) : (
-            <GamePage
-              selectedGame={selectedGame}
-              gameResults={gameResults}
-              formatDate={formatDate}
+        <div className="app">
+            <Header
               onHomeClick={handleHomeClick}
-            />
-          )}
-        </main>
-      </div>
+              onAllResultsClick={handleAllResultsClick}
+              mobileMenuOpen={mobileMenuOpen}
+              setMobileMenuOpen={setMobileMenuOpen}
+              games={games}
+              onGameClick={handleGameClick}
+            /> 
 
-      <Footer />
-    </div>
-  );
+            <div className="main-container">
+                <Sidebar
+                  games={games}
+                  selectedGame={selectedGame}
+                  onGameClick={handleGameClick}
+                />
+
+                <main className="main-content">
+                    {currentView === 'home' ? (
+                        <HomePage
+                          todayResults={todayResults}
+                          games={games}
+                          formatDate={formatDate}
+                          onGameClick={handleGameClick}
+                          onDateSearch={handleDateSearch}
+                        />
+                    ) : currentView === 'allresults' ? (
+                        <AllResultsPage
+                          games={games}
+                          onGameClick={handleGameClick}
+                        />
+                    ) : (
+                        <GamePage
+                          selectedGame={selectedGame}
+                          gameResults={gameResults}
+                          formatDate={formatDate}
+                          onHomeClick={handleHomeClick}
+                        />
+                    )}
+                </main>
+            </div>
+
+            <Footer />
+        </div>
+    );
 };
 
 export default App;

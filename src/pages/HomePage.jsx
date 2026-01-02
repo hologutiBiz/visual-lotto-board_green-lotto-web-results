@@ -48,7 +48,7 @@ const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }
         <div className="guide-steps">
           <div className="guide-step">
             <div className="step-number">1</div>
-            <p>View today's results below for all 16 Green Lotto games</p>
+            <p>View "today's results" below for today results</p>
           </div>
           <div className="guide-step">
             <div className="step-number">2</div>
