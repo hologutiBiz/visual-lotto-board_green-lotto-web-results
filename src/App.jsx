@@ -67,16 +67,24 @@ const App = () => {
                     const apiUrl = import.meta.env.VITE_RESULT_API_URL;
                     const year = new Date().getFullYear();
 
-                    const response = await fetch(
-                        `${apiUrl}?gameId=${selectedGame.id}&year=${year}`
-                    );
+                    const response = await fetch(`${apiUrl}?gameId=${selectedGame.id}&year=${year}`);
+                    const text = await response.text();
+                    console.log("Raw API response:", text);
 
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
 
-                    const json = await response.json();
-                    console.log(response) // debugging response
+                    let json; 
+                    try 
+                        { json = JSON.parse(text); 
+                    } catch (err) { 
+                        console.error("Failed to parse JSON:", err, text); 
+                        setError("Invalid API response"); 
+                        setLoading(false); return; 
+                    }
+
+                    // const json = await response.json();
 
                     if (json.success && json.data) {
                         // Transform API data to match the format GameTable expects
