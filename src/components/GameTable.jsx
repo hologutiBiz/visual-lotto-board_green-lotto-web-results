@@ -35,10 +35,10 @@ const GameTable = ({ results, formatDate }) => {
                 <table className="game-table">
                     <thead>
                         <tr>
-                            <th>SN</th>
+                            <th className="sn-ref-cell">SN</th>
                             <th>Date</th>
-                            <th>Winning</th>
-                            <th>Machine</th>
+                            <th colSpan={5}>Winning</th>
+                            <th colSpan={5}>Machine</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,8 +47,8 @@ const GameTable = ({ results, formatDate }) => {
                             
                             return (
                                 <tr key={normalized.id}>
-                                    <td>ref_{String(index + 1).padStart(2, '0')}</td>
-                                    <td>{formatDate(normalized.date)}</td>
+                                    <td className="sn-ref-cell">ref_{String(index + 1).padStart(2, '0')}</td>
+                                    <td className="date-cell">{formatDate(normalized.date)}</td>
                                     <td>
                                         <div className="table-numbers">
                                             {normalized.winning.map((num, idx) => (

@@ -24,7 +24,7 @@ const AllResultsPage = ({ games, onGameClick }) => {
           >
             <div className="game-info">
               <h3 className="game-name">{game.game_name}</h3>
-              <p className="game-description">View complete historical results</p>
+              <p className="game-description">View complete past and lastest results from the year <time>2026</time></p>
             </div>
             <ArrowRight size={20} className="arrow-icon" />
           </button>

@@ -1,10 +1,14 @@
 /* src/components/GameTable.css */
 
 .table-container {
+  /* width: 100vw; */
   background: white;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  /* overflow: hidden; */
+  background-color: #000;
+  margin: auto 0;
+  width: 100%;
 }
 
 .no-results {
@@ -15,30 +19,46 @@
 }
 
 
-.table-wrapper {
+/* .table-wrapper {
   overflow-x: auto;
-}
+} */
 
 .game-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 800px;
+  /* position: relative; */
+    width: 490px;
+    height: 100%;
+    margin: 25px 7px;
+    border-collapse: collapse; 
+    border-left: 2px solid rgba(0, 0, 0, 0.333);
+
+    /* background-color: #ff0000; */
 }
 
 .game-table thead {
+  color: #fff;
+  width: inherit;
+   border: 1px solid black;
+  padding: 5px;
   background-color: #16a34a;
-  color: white;
+}
+
+td {
+    border-top: 1px solid black;
+    padding: 5px 0;
 }
 
 .game-table th {
-  padding: 0.75rem 1rem;
+  /* padding: 0.75rem 1rem;
   text-align: left;
   font-size: 0.875rem;
   font-weight: 600;
-  white-space: nowrap;
+  white-space: nowrap; */
+
+  /* background-color: whitesmoke; */
+   
 }
 
-.game-table tbody tr {
+/* .game-table tbody tr {
   border-bottom: 1px solid #e5e7eb;
   transition: background-color 0.2s;
 }
@@ -49,12 +69,34 @@
 
 .game-table tbody tr:last-child {
   border-bottom: none;
-}
+} */
+
+.sn-ref-cell {
+
+   width: 25px;
+    text-align: center;
+    border: 1px solid black;
+    font-size: 11px;
+} 
+
+.date-cell {
+  width: 80px;
+
+   position: relative;
+    color: #000;
+    width: 30px;
+    border: 1px solid black;
+    background-color: whitesmoke;
+    font-size: 12px;
+} 
 
 .game-table td {
-  padding: 0.75rem 1rem;
+  /* padding: 0.75rem 1rem;
   font-size: 0.875rem;
-  color: #374151;
+  color: #374151; */
+
+   border-top: 1px solid black;
+    padding: 5px 0;
 }
 
 .game-table .draw-number {
@@ -66,6 +108,7 @@
   display: flex;
   gap: 0.25rem;
   flex-wrap: wrap;
+  /* background-color: #ff0000; */
 }
 
 .table-ball {
@@ -81,13 +124,17 @@
 }
 
 .table-ball.winning {
-  background-color: #dcfce7;
+  /* background-color: #dcfce7; */
   color: #15803d;
+  text-align: center;
+  font-size: 20px;
 }
 
 .table-ball.machine {
-  background-color: #dbeafe;
-  color: #2563eb;
+  /* background-color: #dbeafe; */
+  color: #ff0000;
+  text-align: center;
+  font-size: 20px;
 }
 
 .table-empty {
@@ -113,4 +160,82 @@
     height: 28px;
     font-size: 0.7rem;
   }
+
+  .table-ball.winning,
+  .table-ball.machine {
+    font-size: 15px;
+  }
 }
+
+@media screen and (max-width: 430px) {
+        body {
+            width: 100%;
+        }
+        
+        .game-table {
+            width: 400px;
+            margin-block-start: 40px;
+        }
+        .serial-num {
+            width: 20px;
+            font-size: 8px;
+        }
+        .days {
+            width: 10px;
+            font-size: 10px;
+        }
+        .winning,
+        .machine {
+            font-size: 16.5px;
+        } 
+     }
+
+
+     /*(360-393px device)*/  
+     @media screen and (max-width: 393px) {
+        body {
+            width: 100%;
+        }
+        
+        .game-table {
+            width: 350px;
+            margin-block-start: 25px;
+        }
+        .year {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .serial-num {
+            width: 15px;
+        }
+        .winning,
+        .machine {
+            font-size: 15px;
+        } 
+     }
+     
+
+    /*(320px device)*/ 
+    @media screen and (max-width: 359px) {
+        body {
+            width: 100%;
+        }
+
+        .game-table {
+            width: 300px;
+            margin-block-start: 20px;
+        }
+        .year {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .line,
+        .serial-num {
+            display: none;
+        }
+        .winning,
+        .machine {
+            font-size: 15px;
+        }  
+    }
+  

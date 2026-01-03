@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  /* background-color: #ff0000 !important; */
+  width: 100vw;
 }
 
 .game-header {
@@ -55,15 +57,6 @@
   font-weight: 500;
 }
 
-@media (max-width: 768px) {
-  .game-title {
-    font-size: 1.5rem;
-  }
-}
-
-
-
-
 /* Clear button */
 .clear-btn {
     padding: 0.75rem 1.25rem;
@@ -113,4 +106,15 @@
 .no-results-message p {
     margin: 0;
     font-size: 1rem;
+}
+
+@media (max-width: 767px) {
+  .game-title {
+    font-size: 1.5rem;
+  }
+
+  .game-page {
+ background-color: #ff0000;
+}
+  
 }

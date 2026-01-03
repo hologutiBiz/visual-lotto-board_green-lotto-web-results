@@ -137,6 +137,22 @@ body {
   background-color: #15803d;
 }
 
+@media screen and (max-width: 767px) {
+  .main-container {
+  /* flex: 1; */
+  /* width: ca; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* max-width: 1200px; */
+  margin: 0 0 ;
+  /* padding: 1.5rem 1rem; */
+  /* gap: 1.5rem; */
+  /* flex: 1; */
+  /* width: 100%; */
+
+}
+}
+
 
 
 
