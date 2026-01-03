@@ -35,10 +35,10 @@ const GameTable = ({ results, formatDate }) => {
                 <table className="game-table">
                     <thead>
                         <tr>
-                            <th className="sn-ref-cell">SN</th>
+                            <th>SN</th>
                             <th>Date</th>
-                            <th colSpan={5} >Winning</th>
-                            <th colSpan={5}>Machine</th>
+                            <th>Winning</th>
+                            <th>Machine</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,19 +49,19 @@ const GameTable = ({ results, formatDate }) => {
                                 <tr key={normalized.id}>
                                     <td className="sn-ref-cell">ref_{String(index + 1).padStart(2, '0')}</td>
                                     <td className="date-cell">{formatDate(normalized.date)}</td>
-                                    <td>
+                                    <td className="winning">
                                         <div className="table-numbers">
                                             {normalized.winning.map((num, idx) => (
-                                                <span key={idx} className="table-ball winning">
+                                                <span key={idx} className="table-ball">
                                                     {String(num).padStart(2, '0')}
                                                 </span>
                                             ))}
                                         </div>
                                     </td>
-                                    <td>
+                                    <td className="machine">
                                         <div className="table-numbers">
                                             {normalized.machine.map((num, idx) => (
-                                                <span key={idx} className="table-ball machine">
+                                                <span key={idx} className="table-ball">
                                                     {String(num).padStart(2, '0')}
                                                 </span>
                                             ))}
