@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import GamePage from './pages/GamePage';
 import AllResultsPage from './pages/AllResultsPage';
-import { getGames, getTodayResults, getResultsByDate, getGameResults } from './utils/supabase';
+import { getGames, getTodayResults, getResultsByDate } from './utils/supabase';
 import './App.css';
 
 const App = () => {

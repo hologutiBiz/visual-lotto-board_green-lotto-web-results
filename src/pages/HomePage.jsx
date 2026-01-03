@@ -8,30 +8,30 @@ import "../styles/HomePage.css"
 
 
 const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }) => {
-  const [searchDate, setSearchDate] = useState('');
-  const [displayResults, setDisplayResults] = useState(todayResults);
-  const [isSearching, setIsSearching] = useState(false);
-  const [currentDate, setCurrentDate] = useState(new Date());
+    const [searchDate, setSearchDate] = useState('');
+    const [displayResults, setDisplayResults] = useState(todayResults);
+    const [isSearching, setIsSearching] = useState(false);
+    const [currentDate, setCurrentDate] = useState(new Date());
 
-  const handleDateSearch = async () => {
-    if (!searchDate) {
-      alert('Please select a date');
-      return;
-    }
+    const handleDateSearch = async () => {
+      if (!searchDate) {
+        alert('Please select a date');
+        return;
+      }
 
-    setIsSearching(true);
-    // Call the parent function to fetch results for the selected date
-    const results = await onDateSearch(searchDate);
-    setDisplayResults(results);
-    setCurrentDate(new Date(searchDate));
-    setIsSearching(false);
-  };
+      setIsSearching(true);
+      // Call the parent function to fetch results for the selected date
+      const results = await onDateSearch(searchDate);
+      setDisplayResults(results);
+      setCurrentDate(new Date(searchDate));
+      setIsSearching(false);
+    };
 
-  const handleShowToday = () => {
-    setSearchDate('');
-    setDisplayResults(todayResults);
-    setCurrentDate(new Date());
-  };
+    const handleShowToday = () => {
+        setSearchDate('');
+        setDisplayResults(todayResults);
+        setCurrentDate(new Date());
+    };
 
   // Update display when todayResults changes
   useEffect(() => {

@@ -55,15 +55,3 @@ export const searchTodayResults = async (searchTerm) => {
     if (error) throw error;
     return data;
 };
-
-// Fetch game results (historical) - ALL results for a specific game
-// export const getGameResults = async (gameId) => {
-//   const { data, error } = await supabase
-//     .from('game_results')
-//     .select('*')
-//     .eq('game_id', gameId)
-//     .order('draw_date', { ascending: false });
-  
-//   if (error) throw error;
-//   return data;
-// };
