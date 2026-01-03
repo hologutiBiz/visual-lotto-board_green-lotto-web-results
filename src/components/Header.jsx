@@ -16,35 +16,35 @@ const Header = ({ onHomeClick, onAllResultsClick, mobileMenuOpen, setMobileMenuO
                     </button>
                   </div>
                   
+                  <nav className="desktop-nav">
+                      <button onClick={onHomeClick} className="nav-link">
+                          <Home size={18} />
+                          Home
+                      </button>
+                      <button onClick={onAllResultsClick} className="nav-link">
+                          <Archive size={18} />
+                          All Games
+                      </button>
+                      <a href="https://visuallottoboard.com/about" target="_blank" rel="noopener noreferrer" className="nav-link">
+                          <Info size={18} />
+                          About
+                      </a>
+                      <a href="https://visuallottoboard.com/contact" target="_blank" rel="noopener noreferrer" className="nav-link">
+                          <Mail size={18} />
+                          Contact
+                      </a>
+                      <a href="https://visuallottoboard.com/signup" target="_blank" rel="noopener noreferrer" className="nav-link nav-link-primary">
+                          <UserPlus size={18} />
+                          Sign Up
+                      </a>
+                  </nav>
+
                   <button
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     className="mobile-menu-btn"
                   >
                     {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                   </button>
-
-                  <nav className="desktop-nav">
-                    <button onClick={onHomeClick} className="nav-link">
-                      <Home size={18} />
-                      Home
-                    </button>
-                    <button onClick={onAllResultsClick} className="nav-link">
-                      <Archive size={18} />
-                      All Games
-                    </button>
-                    <a href="https://visuallottoboard.com/about" target="_blank" rel="noopener noreferrer" className="nav-link">
-                      <Info size={18} />
-                      About
-                    </a>
-                    <a href="https://visuallottoboard.com/contact" target="_blank" rel="noopener noreferrer" className="nav-link">
-                      <Mail size={18} />
-                      Contact
-                    </a>
-                    <a href="https://visuallottoboard.com/signup" target="_blank" rel="noopener noreferrer" className="nav-link nav-link-primary">
-                      <UserPlus size={18} />
-                      Sign Up
-                    </a>
-                  </nav>
               </div>
 
               {mobileMenuOpen && (
@@ -74,7 +74,7 @@ const Header = ({ onHomeClick, onAllResultsClick, mobileMenuOpen, setMobileMenuO
                           <button
                             key={game.id}
                             onClick={() => onGameClick(game)}
-                            className="mobile-menu-item"
+                            className="mobile-menu-item game-name-item"
                           >
                             {game.game_name}
                           </button>
