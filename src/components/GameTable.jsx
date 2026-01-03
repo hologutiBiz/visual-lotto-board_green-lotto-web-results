@@ -37,7 +37,7 @@ const GameTable = ({ results, formatDate }) => {
                         <tr>
                             <th className="sn-ref-cell">SN</th>
                             <th>Date</th>
-                            <th colSpan={5}>Winning</th>
+                            <th colSpan={5} >Winning</th>
                             <th colSpan={5}>Machine</th>
                         </tr>
                     </thead>
