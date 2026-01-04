@@ -4,7 +4,7 @@ import GameTable from '../components/GameTable';
 import AdUnit from '../components/AdUnit';
 import "../styles/GamePage.css";
 
-const GamePage = ({ selectedGame, gameResults, formatDate, onHomeClick }) => {
+const GamePage = ({ selectedGame, gameResults, formatDate, onHomeClick, gameLoading, error }) => {
     const [searchDate, setSearchDate] = useState('');
     const [filteredResults, setFilteredResults] = useState(gameResults);
 
@@ -67,7 +67,13 @@ const GamePage = ({ selectedGame, gameResults, formatDate, onHomeClick }) => {
                 )}
             </div> */}
 
-            <GameTable results={gameResults} formatDate={formatDate} />
+            <GameTable 
+                results={gameResults} 
+                formatDate={formatDate}
+                loading={gameLoading} 
+                error={error}
+                gameName={selectedGame?.game_name}
+            />
             {/* <AdUnit position="Game Page Bottom" /> */}
         </div>
     );

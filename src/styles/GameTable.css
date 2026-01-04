@@ -7,6 +7,42 @@
   /* overflow: hidden; */
 }
 
+/* Loading message */
+.loading {
+  font-style: italic;
+  color: #2a7ae2;   /* a calm blue tone */
+  margin: 10px 0;
+  text-align: center;
+  animation: pulse 1.5s infinite;
+}
+
+/* Simple pulsing effect */
+@keyframes pulse {
+  0%   { opacity: 0.6; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Error message */
+.error {
+  font-style: italic;
+  color: #d9534f;   /* a strong red tone */
+  margin: 10px 0;
+  text-align: center;
+  font-weight: bold;
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Quick shake effect to draw attention */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+
 /* .table-wrapper {
   overflow-x: auto;
   background-color: #ff0000;
@@ -103,11 +139,6 @@ th{
 }
 
 @media (max-width: 668px) {
-  .table-container {
-    /* background-color: #ff0000; */
-    /* margin-right: 0.5%; */
-    /* width: 200%; */
-  }
   .sn-ref-cell {
     width: 20px;
     font-size: 10px;

@@ -18,6 +18,7 @@ const App = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [gameLoading, setGameLoading] = useState(false);
 
   // Format date: "Jan Thu 1st, 2026"
     const formatDate = (date) => {
@@ -62,14 +63,17 @@ const App = () => {
         const fetchGameResults = async () => {
             if (selectedGame) {
                 try {
-                    setLoading(true);
+                    // setLoading(true);
+                    setGameLoading(true);
+                    setError(null);
+                    setGameResults([]);
                     
                     const apiUrl = import.meta.env.VITE_RESULT_API_URL;
                     const year = new Date().getFullYear();
 
                     const response = await fetch(`${apiUrl}?gameId=${selectedGame.id}&year=${year}`);
                     const text = await response.text();
-                    console.log("Raw API response:", text);
+                    // console.log("Raw API response:", text);
 
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
@@ -79,9 +83,11 @@ const App = () => {
                     try { 
                         json = JSON.parse(text); 
                     } catch (err) { 
-                        console.error("Failed to parse JSON:", err, text); 
+                        // console.error("Failed to parse JSON:", err, text); 
                         setError("Invalid API response"); 
-                        setLoading(false); return; 
+                        setGameLoading(false);
+                        setLoading(false);
+                        return; 
                     }
 
                     // const json = await response.json();
@@ -100,12 +106,13 @@ const App = () => {
                         throw new Error(json.message || 'Failed to fetch results');
                     }
 
-                    setLoading(false);
+                    setGameLoading(false);
                 } catch (err) {
                     console.error('Error fetching game results:', err);
                     setError('Failed to load game results.');
                     setGameResults([]);
                     setLoading(false);
+                    setGameLoading(false);
                 }
             }
         };
@@ -210,6 +217,8 @@ const App = () => {
                           gameResults={gameResults}
                           formatDate={formatDate}
                           onHomeClick={handleHomeClick}
+                          gameLoading={gameLoading}
+                          error={error}
                         />
                     )}
                 </main>

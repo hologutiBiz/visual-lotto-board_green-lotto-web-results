@@ -1,6 +1,6 @@
 import "../styles/GameTable.css"
 
-const GameTable = ({ results, formatDate }) => {
+const GameTable = ({ results, formatDate, loading, error, gameName }) => {
     // Normalize data structure - handle both Supabase format and API format
     const normalizeResult = (result) => {
         // If it's from Supabase (real-time results)
@@ -27,11 +27,15 @@ const GameTable = ({ results, formatDate }) => {
         return result;
     };
 
+
     return (
         <div className="table-container">
-            {results.length === 0 ? (
+            {loading && <p className="loading">Loading {gameName} results...</p>}
+            {!loading && error && <p className="error">{error}</p>}
+            {!loading && !error && results.length === 0 && (
                 <p className="no-results">No past results available for this game.</p>
-            ) : (
+            )} 
+            {!loading && !error && results.length > 0 && (
                 <table className="game-table">
                     <thead>
                         <tr>
