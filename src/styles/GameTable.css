@@ -13,7 +13,7 @@
 } */
 
 .game-table {
-  width: 490px;
+  width: 100%;
   height: 100%;
   margin: 25px 7px;
   border-collapse: collapse; 
@@ -33,20 +33,20 @@ th{
 }
 
 .sn-ref-cell {
-  width: 25px;
+  width: 10%;
   text-align: center;
   padding: 5px;
   border: 1px solid black;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .date-cell {
   position: relative;
   color: #000;
-  width: 30px;
+  width: 15%;
   border: 1px solid black;
   background-color: whitesmoke;
-  font-size: 8px;
+  font-size: 12px;
 }
 
 .game-table tbody tr:hover {
@@ -61,11 +61,13 @@ th{
 .game-table .winning {
   color: #15803d;
   text-align: center;
+  border-bottom: 1px solid rgb(234, 234, 234);
   font-size: 20px; 
 }
 .game-table .machine {
   color: #ff0000;
   text-align: center;
+  border-bottom: 1px solid rgb(234, 234, 234);
   font-size: 20px; 
 }
 .table-numbers {
@@ -98,16 +100,26 @@ th{
   .table-wrapper {
     -webkit-overflow-scrolling: touch;
   }
-  
-  .game-table th,
-  .game-table td {
-    padding: 0.5rem;
-    font-size: 0.75rem;
+}
+
+@media (max-width: 668px) {
+  .table-container {
+    /* background-color: #ff0000; */
+    /* margin-right: 0.5%; */
+    /* width: 200%; */
   }
-  
-  .table-ball {
-    width: 28px;
-    height: 28px;
-    font-size: 0.7rem;
+  .sn-ref-cell {
+    width: 20px;
+    font-size: 10px;
   }
+
+  .date-cell {
+    width: 10px;
+    font-size: 8px;
+  }
+
+  .game-table .winning,
+  .game-table .machine {
+    font-size: 15px;
+  } 
 }
