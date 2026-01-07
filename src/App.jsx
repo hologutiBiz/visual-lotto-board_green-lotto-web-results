@@ -181,21 +181,20 @@ const App = () => {
 
     // Global Ad Refresh on View Change
     useEffect(() => {
-        // 1. Only run if we are in a browser environment
-        // 2. Only run if Ezoic standalone is actually loaded
-        if (typeof window !== 'undefined' && window.ezstandalone) {
-            try {
-            window.ezstandalone.cmd.push(function() {
-                if (window.ezstandalone.enabled) {
-                window.ezstandalone.refresh();
-                console.log("Ezoic Ads Refreshed");
-                }
-            });
-            } catch (e) {
-            console.error("Ezoic refresh error:", e);
-            }
+  if (typeof window !== 'undefined' && window.ezstandalone && Array.isArray(window.ezstandalone.cmd)) {
+    try {
+      window.ezstandalone.cmd.push(function() {
+        if (window.ezstandalone.enabled) {
+          window.ezstandalone.refresh();
+          console.log("Ezoic Ads Refreshed");
         }
-    }, [currentView]); // Remove selectedGame from here if it changes too frequently
+      });
+    } catch (e) {
+      console.error("Ezoic refresh error:", e);
+    }
+  }
+}, [currentView]);
+
 
     return (
         <div className="app">
