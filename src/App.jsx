@@ -180,20 +180,20 @@ const App = () => {
     }
 
     // Global Ad Refresh on View Change
-    useEffect(() => {
-  if (typeof window !== 'undefined' && window.ezstandalone && Array.isArray(window.ezstandalone.cmd)) {
-    try {
-      window.ezstandalone.cmd.push(function() {
-        if (window.ezstandalone.enabled) {
-          window.ezstandalone.refresh();
-          console.log("Ezoic Ads Refreshed");
-        }
-      });
-    } catch (e) {
-      console.error("Ezoic refresh error:", e);
-    }
-  }
-}, [currentView]);
+//     useEffect(() => {
+//   if (typeof window !== 'undefined' && window.ezstandalone && Array.isArray(window.ezstandalone.cmd)) {
+//     try {
+//       window.ezstandalone.cmd.push(function() {
+//         if (window.ezstandalone.enabled) {
+//           window.ezstandalone.refresh();
+//           console.log("Ezoic Ads Refreshed");
+//         }
+//       });
+//     } catch (e) {
+//       console.error("Ezoic refresh error:", e);
+//     }
+//   }
+// }, [currentView]);
 
 
     return (
