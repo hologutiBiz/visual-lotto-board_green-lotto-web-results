@@ -17,7 +17,7 @@ const AllResultsPage = ({ games, onGameClick }) => {
       </div>
 
       {/* Ad Unit: Top of List */}
-      <AdUnit id={105} position="All Results Top" />
+      {/* <AdUnit id={105} position="All Results Top" /> */}
 
       <div className="games-list">
         {games.map((game) => (
@@ -36,7 +36,7 @@ const AllResultsPage = ({ games, onGameClick }) => {
       </div>
 
       {/* Ad Unit: Bottom of List */}
-      <AdUnit id={106} position="All Results Bottom" />
+      {/* <AdUnit id={106} position="All Results Bottom" /> */}
 
       <div className="info-box">
         <h3>About Historical Results</h3>
