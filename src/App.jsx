@@ -179,6 +179,16 @@ const App = () => {
         );
     }
 
+    // Global Ad Refresh on View Change
+    useEffect(() => {
+        if (window.ezstandalone) {
+            window.ezstandalone.cmd.push(function() {
+            // This resets Ezoic to find the new placeholders on the new page
+            window.ezstandalone.refresh();
+            });
+        }
+    }, [currentView, selectedGame]); // Trigger whenever view or game changes
+
     return (
         <div className="app">
             <Header

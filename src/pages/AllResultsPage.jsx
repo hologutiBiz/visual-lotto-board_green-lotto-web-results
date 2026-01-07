@@ -1,5 +1,6 @@
 // src/pages/AllResultsPage.jsx
 import { ArrowRight, TrendingUp } from 'lucide-react';
+import AdUnit from '../components/AdUnit';
 import '../styles/AllResultsPage.css';
 
 const AllResultsPage = ({ games, onGameClick }) => {
@@ -14,6 +15,9 @@ const AllResultsPage = ({ games, onGameClick }) => {
           </p>
         </div>
       </div>
+
+      {/* Ad Unit: Top of List */}
+      <AdUnit id={105} position="All Results Top" />
 
       <div className="games-list">
         {games.map((game) => (
@@ -30,6 +34,9 @@ const AllResultsPage = ({ games, onGameClick }) => {
           </button>
         ))}
       </div>
+
+      {/* Ad Unit: Bottom of List */}
+      <AdUnit id={106} position="All Results Bottom" />
 
       <div className="info-box">
         <h3>About Historical Results</h3>

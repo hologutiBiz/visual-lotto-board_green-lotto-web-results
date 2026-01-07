@@ -22,6 +22,7 @@ const Footer = () => {
                     <div className="footer-links">
                         <a className="footer-link" href="https://visuallottoboard.com/about" target="_blank" rel="noopener noreferrer">About</a>
                         <a className="footer-link" href="https://visuallottoboard.com/policies-center" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                        <a className="footer-link" href="https://blog.visuallottoboard.com/article/lotto-results/green-lotto-launch" target="_blank" rel="noopener noreferrer">The Story Behind the GreenLotto Results Website Launch</a>
                         <a className="footer-link" href="https://visuallottoboard.com/contact" target="_blank" rel="noopener noreferrer">Contact</a>
                     </div>
                     

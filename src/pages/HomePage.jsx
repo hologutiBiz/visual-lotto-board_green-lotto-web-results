@@ -61,7 +61,7 @@ const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }
         </div>
       </div>
 
-      {/* <AdUnit position="Top Banner" /> */}
+      <AdUnit position="Top Banner" />
 
       {/* Search by Date */}
       <div className="search-section">
@@ -132,7 +132,7 @@ const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }
         )}
       </div>
 
-      {/* <AdUnit position="Bottom Banner" /> */}
+      <AdUnit position="Bottom Banner" />
     </div>
   );
 };
