@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "curl -L https://srv.adstxtmanager.com/82215/visuallottoboard.com > public/ads.txt",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
