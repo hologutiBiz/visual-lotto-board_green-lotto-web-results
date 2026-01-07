@@ -181,13 +181,21 @@ const App = () => {
 
     // Global Ad Refresh on View Change
     useEffect(() => {
-        if (window.ezstandalone) {
+        // 1. Only run if we are in a browser environment
+        // 2. Only run if Ezoic standalone is actually loaded
+        if (typeof window !== 'undefined' && window.ezstandalone) {
+            try {
             window.ezstandalone.cmd.push(function() {
-            // This resets Ezoic to find the new placeholders on the new page
-            window.ezstandalone.refresh();
+                if (window.ezstandalone.enabled) {
+                window.ezstandalone.refresh();
+                console.log("Ezoic Ads Refreshed");
+                }
             });
+            } catch (e) {
+            console.error("Ezoic refresh error:", e);
+            }
         }
-    }, [currentView, selectedGame]); // Trigger whenever view or game changes
+    }, [currentView]); // Remove selectedGame from here if it changes too frequently
 
     return (
         <div className="app">
