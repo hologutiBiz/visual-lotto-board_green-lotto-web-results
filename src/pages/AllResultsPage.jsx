@@ -17,7 +17,7 @@ const AllResultsPage = ({ games, onGameClick }) => {
       </div>
 
       {/* Ad Unit: GreenLotto_Home_Top */}
-      <AdUnit slot={9150572957} />
+      <AdUnit slot="9150572957"/>
 
       <div className="games-list">
         {games.map((game, index) => (

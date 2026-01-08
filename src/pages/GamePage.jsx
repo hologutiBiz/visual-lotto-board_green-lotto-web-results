@@ -76,7 +76,7 @@ const GamePage = ({ selectedGame, gameResults, formatDate, onHomeClick, gameLoad
                 gameName={selectedGame?.game_name}
             />
             {/* <Ad Unit: GreenLotto_Bottom_Page /> */}
-            <AdUnit slot={9952179429} />
+            <AdUnit slot="9952179429" />
         </div>
     );
 };

@@ -100,8 +100,8 @@ const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }
       </div>
 
        {/* <Ad Unit: GreenLotto_Home_Top /> */}
-      <AdUnit slot={9150572957} />
-      
+      <AdUnit slot="9150572957" />
+
       {/* Results Section */}
       <div className="today-section">
         <div className="section-header">
