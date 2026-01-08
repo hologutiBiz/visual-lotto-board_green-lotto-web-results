@@ -41,7 +41,8 @@ const GamePage = ({ selectedGame, gameResults, formatDate, onHomeClick, gameLoad
                 </div>
             </div>
 
-            {/* <AdUnit position="Game Page Top" /> */}
+            {/* <Ad Unit GreenLotto_Home_Top /> */}
+            {/* <AdUnit slot={9150572957} /> */}
 
             {/* <div className="search-box">
                 <div className="search-input-group">
@@ -74,7 +75,8 @@ const GamePage = ({ selectedGame, gameResults, formatDate, onHomeClick, gameLoad
                 error={error}
                 gameName={selectedGame?.game_name}
             />
-            {/* <AdUnit position="Game Page Bottom" /> */}
+            {/* <Ad Unit: GreenLotto_Bottom_Page /> */}
+            <AdUnit slot={9952179429} />
         </div>
     );
 };

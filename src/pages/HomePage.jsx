@@ -61,8 +61,6 @@ const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }
         </div>
       </div>
 
-      {/* <AdUnit position="Top Banner" /> */}
-
       {/* Search by Date */}
       <div className="search-section">
         <h3 className="search-title">
@@ -101,6 +99,9 @@ const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }
         </div>
       </div>
 
+       {/* <Ad Unit: GreenLotto_Home_Top /> */}
+      <AdUnit slot={9150572957} />
+      
       {/* Results Section */}
       <div className="today-section">
         <div className="section-header">
@@ -132,7 +133,7 @@ const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }
         )}
       </div>
 
-      {/* <AdUnit position="Bottom Banner" /> */}
+      <AdUnit position="Bottom Banner" />
     </div>
   );
 };

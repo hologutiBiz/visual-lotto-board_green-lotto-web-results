@@ -1,4 +1,3 @@
-
 import { Home, Menu, X, Archive, Info, Mail, UserPlus } from 'lucide-react';
 import '../styles/Header.css';
 

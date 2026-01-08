@@ -16,27 +16,36 @@ const AllResultsPage = ({ games, onGameClick }) => {
         </div>
       </div>
 
-      {/* Ad Unit: Top of List */}
-      {/* <AdUnit id={105} position="All Results Top" /> */}
+      {/* Ad Unit: GreenLotto_Home_Top */}
+      <AdUnit slot={9150572957} />
 
       <div className="games-list">
-        {games.map((game) => (
-          <button
-            key={game.id}
-            onClick={() => onGameClick(game)}
-            className="game-list-item"
-          >
-            <div className="game-info">
-              <h3 className="game-name">{game.game_name}</h3>
-              <p className="game-description">View complete past and lastest results from the year <time>2026</time></p>
-            </div>
-            <ArrowRight size={20} className="arrow-icon" />
-          </button>
+        {games.map((game, index) => (
+          <div key={game.id} style={{ display: "contents" }}>
+            <button
+              key={game.id}
+              onClick={() => onGameClick(game)}
+              className="game-list-item"
+            >
+              <div className="game-info">
+                <h3 className="game-name">{game.game_name}</h3>
+                <p className="game-description">View complete past and lastest results from the year <time>2026</time></p>
+              </div>
+              <ArrowRight size={20} className="arrow-icon" />
+            </button>
+
+            {/* <Ad Unit GreenLotto_Middle_Page Injection/> */}
+            {index === 7 && (
+              <div className='mid-list-ad' style={{ width: '100%', gridColumn: '1 / -1'}}>
+                <AdUnit slot="7215508900" />
+              </div>
+            )}
+          </div>
         ))}
       </div>
 
-      {/* Ad Unit: Bottom of List */}
-      {/* <AdUnit id={106} position="All Results Bottom" /> */}
+      {/* Ad Unit: GreenLotto_Bottom_Page */}
+      <AdUnit slot="9952179429" />
 
       <div className="info-box">
         <h3>About Historical Results</h3>
