@@ -42,6 +42,11 @@ const HomePage = ({ todayResults, games, formatDate, onGameClick, onDateSearch }
 
   return (
     <div className="home-page">
+      <h1 className="main-title">Green Lotto Today Result: Daily Winning Number, Machine Number & Past Results</h1>
+      <p className="main-subtitle">
+          Real-time updates for all daily draws including Naija Vag, Dream Number, Odogwu, Wazobia, Destiny and all.
+        </p>
+
       {/* Navigation Guide */}
       <div className="navigation-guide">
         <h2 className="guide-title">How to Check Results</h2>
