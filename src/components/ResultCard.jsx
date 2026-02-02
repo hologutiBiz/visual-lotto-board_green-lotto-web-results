@@ -16,7 +16,7 @@ const ResultCard = ({ result, game, onViewAll }) => {
                         Draw #{result.draw_number}
                     </p>
                 </div>
-                <span className="result-card-time"><time>DrawTime: {result.draw_time}</time></span>
+                <span className="result-card-time"><time>CloseTime: {result.draw_time}</time></span>
             </div>
         
             <div className="result-card-body">

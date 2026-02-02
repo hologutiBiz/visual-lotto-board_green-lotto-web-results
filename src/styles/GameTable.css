@@ -1,7 +1,7 @@
 /* src/components/GameTable.css */
 
 .table-container {
-  background: white;
+  background: #fff;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   /* overflow: hidden; */
@@ -42,12 +42,6 @@
   100% { transform: translateX(0); }
 }
 
-
-/* .table-wrapper {
-  overflow-x: auto;
-  background-color: #ff0000;
-} */
-
 .game-table {
   width: 100%;
   height: 100%;
@@ -57,10 +51,6 @@
   /* min-width: 800px; */
 }
 
-/* .game-table thead {
-  color: #fff;
-  background-color: #16a34a;
-} */
 th{
   color: #fff;
   background-color: #16a34a;
@@ -73,6 +63,7 @@ th{
   text-align: center;
   padding: 5px;
   border: 1px solid black;
+  font-weight: 200;
   font-size: 14px;
 }
 
@@ -82,6 +73,7 @@ th{
   width: 15%;
   border: 1px solid black;
   background-color: whitesmoke;
+  font-weight: 200;
   font-size: 12px;
 }
 
@@ -112,18 +104,6 @@ th{
   font-weight: 400;
 }
 
-/* .table-ball {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: 0.75rem;
-  font-weight: bold;
-  flex-shrink: 0;
-  background-color: #ff0000;
-} */
 
 .table-empty {
   padding: 3rem;

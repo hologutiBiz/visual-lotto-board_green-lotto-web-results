@@ -24,6 +24,7 @@ const Footer = () => {
                         <a className="footer-link" href="https://visuallottoboard.com/policies-center" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
                         <a className="footer-link" href="https://blog.visuallottoboard.com/article/lotto-results/green-lotto-launch" target="_blank" rel="noopener noreferrer">About this Website</a>
                         <a className="footer-link" href="https://visuallottoboard.com/contact" target="_blank" rel="noopener noreferrer">Contact</a>
+                        <a className="footer-link" href="https://blog.visuallottoboard.com" target="_blank" rel="noopener noreferrer">Blog</a>
                     </div>
                     
                     <p className="footer-copyright">© 2025 Visual Lotto Board. All rights reserved.</p>
