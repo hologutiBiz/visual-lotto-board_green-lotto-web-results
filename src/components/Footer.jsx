@@ -27,7 +27,7 @@ const Footer = () => {
                         <a className="footer-link" href="https://blog.visuallottoboard.com" target="_blank" rel="noopener noreferrer">Blog</a>
                     </div>
                     
-                    <p className="footer-copyright">© 2025 Visual Lotto Board. All rights reserved.</p>
+                    <p className="footer-copyright">© 2026 Visual Lotto Board. All rights reserved.</p>
                 </div>
             </div>
         </footer>
