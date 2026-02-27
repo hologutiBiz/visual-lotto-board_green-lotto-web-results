@@ -1,42 +1,64 @@
+// src/components/Header.jsx
 import { Home, Menu, X, Archive, Info, Mail, UserPlus } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 
-const Header = ({ onHomeClick, onAllResultsClick, mobileMenuOpen, setMobileMenuOpen, games, onGameClick }) => {
-  return ( 
-      <header className="site-header">
-          <div className="header-container">
-              <div className="header-content">
-                  <div className='brand-wrapper'>
-                      <img className='logo' src="https://res.cloudinary.com/ddatfadov/image/upload/v1749649983/VLB_logo_gpiyzr.png" alt="logo" width={40}/>
+const Header = ({ mobileMenuOpen, setMobileMenuOpen, games }) => {
+    return ( 
+        <header className="site-header">
+            <div className="header-container">
+                <div className="header-content">
+                    <div className='brand-wrapper'>
+                        <img 
+                          className='logo' 
+                          src="https://res.cloudinary.com/ddatfadov/image/upload/v1749649983/VLB_logo_gpiyzr.png" 
+                          alt="logo" 
+                          width={40}
+                        />
 
-                      <button onClick={onHomeClick} className="brand-btn">
-                      <p className="brand-name">Visual Lotto Board</p>
-                      <h1 className="brand-subtitle">Green Lotto Results</h1>
-                    </button>
-                  </div>
+                        <Link to="/" className="brand-btn">
+                            <p className="brand-name">Visual Lotto Board</p>
+                            <h1 className="brand-subtitle">Green Lotto Results</h1>
+                        </Link>
+                    </div>
                   
-                  <nav className="desktop-nav">
-                      <button onClick={onHomeClick} className="nav-link">
-                          <Home size={18} />
-                          Home
-                      </button>
-                      <button onClick={onAllResultsClick} className="nav-link">
-                          <Archive size={18} />
-                          All Games
-                      </button>
-                      <a href="https://visuallottoboard.com/about" target="_blank" rel="noopener noreferrer" className="nav-link">
+                    <nav className="desktop-nav">
+                        <Link to="/" className="nav-link">
+                            <Home size={18} />
+                            Home
+                        </Link>
+                        <Link to="/gamelist" className="nav-link">
+                            <Archive size={18} />
+                            All Games
+                        </Link>
+                        <a 
+                          href="https://visuallottoboard.com/about" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="nav-link"
+                        >
                           <Info size={18} />
                           About
-                      </a>
-                      <a href="https://visuallottoboard.com/contact" target="_blank" rel="noopener noreferrer" className="nav-link">
+                        </a>
+                        <a 
+                          href="https://visuallottoboard.com/contact" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="nav-link"
+                        >
                           <Mail size={18} />
                           Contact
-                      </a>
-                      <a href="https://visuallottoboard.com/signup" target="_blank" rel="noopener noreferrer" className="nav-link nav-link-primary">
+                        </a>
+                        <a 
+                          href="https://visuallottoboard.com/signup" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="nav-link nav-link-primary"
+                        >
                           <UserPlus size={18} />
                           Sign Up
-                      </a>
-                  </nav>
+                        </a>
+                    </nav>
 
                   <button
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -44,45 +66,70 @@ const Header = ({ onHomeClick, onAllResultsClick, mobileMenuOpen, setMobileMenuO
                   >
                     {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                   </button>
-              </div>
+                </div>
 
-              {mobileMenuOpen && (
+                {mobileMenuOpen && (
                   <div className="mobile-menu">
-                      <button onClick={onHomeClick} className="mobile-menu-item">
+                    <Link 
+                        to="/" 
+                        className="mobile-menu-item"
+                        onClick={() => setMobileMenuOpen(false)}
+                    >
                         <Home size={16} />
                         Home
-                      </button>
-                      <button onClick={onAllResultsClick} className="mobile-menu-item">
-                        <Archive size={16} />
-                        All Games
-                      </button>
-                      <a href="https://visuallottoboard.com/about" target="_blank" rel="noopener noreferrer" className="mobile-menu-item">
-                        <Info size={16} />
-                        About
-                      </a>
-                      <a href="https://visuallottoboard.com/contact" target="_blank" rel="noopener noreferrer" className="mobile-menu-item">
-                        <Mail size={16} />
-                        Contact
-                      </a>
-                      <a href="https://visuallottoboard.com/signup" target="_blank" rel="noopener noreferrer" className="mobile-menu-item">
-                        <UserPlus size={16} />
-                        Sign Up
-                      </a>
-                      <p className="mobile-menu-title">Quick Access</p>
-                      {games.slice(0, 8).map(game => (
-                          <button
-                            key={game.id}
-                            onClick={() => onGameClick(game)}
+                    </Link>
+                    <Link 
+                        to="/gamelist" 
+                        className="mobile-menu-item"
+                        onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Archive size={16} />
+                      All Games
+                    </Link>
+                    <a 
+                      href="https://visuallottoboard.com/about" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="mobile-menu-item"
+                    >
+                      <Info size={16} />
+                      About
+                    </a>
+                    <a 
+                      href="https://visuallottoboard.com/contact" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="mobile-menu-item"
+                    >
+                      <Mail size={16} />
+                      Contact
+                    </a>
+                    <a 
+                      href="https://visuallottoboard.com/signup" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="mobile-menu-item"
+                    >
+                      <UserPlus size={16} />
+                      Sign Up
+                    </a>
+
+                    <p className="mobile-menu-title">Quick Access</p>
+                    {games.slice(0, 8).map(game => (
+                        <Link 
+                            key={game.id} 
+                            to={`/game/result/${game.game_name.toLocaleLowerCase().replace(/ /, '-')}`} 
                             className="mobile-menu-item game-name-item"
-                          >
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
                             {game.game_name}
-                          </button>
-                      ))}
+                        </Link>
+                    ))}
                   </div>
-              )}
-          </div>
-      </header>
-   );
-}
+                )}
+            </div>
+        </header>
+    );
+};
  
 export default Header;

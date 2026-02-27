@@ -1,9 +1,10 @@
 // src/pages/AllResultsPage.jsx
 import { ArrowRight, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import AdUnit from '../components/AdUnit';
 import '../styles/AllResultsPage.css';
 
-const AllResultsPage = ({ games, onGameClick }) => {
+const AllResultsPage = ({ games }) => {
   return (
     <div className="all-results-page">
       <div className="page-header">
@@ -22,19 +23,20 @@ const AllResultsPage = ({ games, onGameClick }) => {
       <div className="games-list">
         {games.map((game, index) => (
           <div key={game.id} style={{ display: "contents" }}>
-            <button
-              key={game.id}
-              onClick={() => onGameClick(game)}
+            <Link 
+              to={`/game/result/${game.game_name.toLocaleLowerCase().replace(/ /, '-')}`} 
               className="game-list-item"
             >
               <div className="game-info">
                 <h3 className="game-name">{game.game_name}</h3>
-                <p className="game-description">View complete past and lastest results from the year <time>2026</time></p>
+                <p className="game-description">
+                  View complete past and latest results from the year <time>{new Date().getFullYear()}</time>
+                </p>
               </div>
               <ArrowRight size={20} className="arrow-icon" />
-            </button>
+            </Link>
 
-            {/* <Ad Unit GreenLotto_Middle_Page Injection/> */}
+            {/* Mid-list Ad injection */}
             {index === 7 && (
               <div className='mid-list-ad' style={{ width: '100%', gridColumn: '1 / -1'}}>
                 <AdUnit slot="7215508900" />

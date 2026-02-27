@@ -1,81 +1,106 @@
-import { useState, useEffect } from 'react';
-import { Home, Search } from 'lucide-react';
-import GameTable from '../components/GameTable';
-import AdUnit from '../components/AdUnit';
+// src/pages/GamePage.jsx
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { Home } from "lucide-react";
+import GameTable from "../components/GameTable";
+import AdUnit from "../components/AdUnit";
+import { getGames } from "../utils/supabase";
 import "../styles/GamePage.css";
 
-const GamePage = ({ selectedGame, gameResults, formatDate, onHomeClick, gameLoading, error }) => {
-    const [searchDate, setSearchDate] = useState('');
-    const [filteredResults, setFilteredResults] = useState(gameResults);
+const GamePage = ({ formatDate }) => {
+    const { game_name } = useParams(); // get game id from URL
+    const [game, setGame] = useState(null);
+    const [gameResults, setGameResults] = useState([]);
+    const [gameLoading, setGameLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    // Update filtered results when gameResults changes
     useEffect(() => {
-        setFilteredResults(gameResults);
-    }, [gameResults]);
+        const fetchGameResults = async () => {
+            if (!game_name) return;
 
-    const handleSearch = () => {
-        if (!searchDate) {
-            setFilteredResults(gameResults);
-            return; 
-        }
-        
-        // Filter results by selected date
-        const filtered = gameResults.filter(result => result.draw_date === searchDate);
-        setFilteredResults(filtered);
+            try {
+                setGameLoading(true);
+                setError(null);
+                setGameResults([]);
 
-        const handleClearSearch = () => {
-            setSearchDate('');
-            setFilteredResults(gameResults);
+                // Get game info from Supabase
+                const gamesData = await getGames();
+                const selectedGame = gamesData.find(g => String(g.game_name).toLowerCase().replace(/\s+/g, "-") === game_name);
+                setGame(selectedGame);
+
+                if (!selectedGame) { 
+                    setError("Game not found."); 
+                    setGameLoading(false); 
+                    return;
+                }
+
+                // Fetch results from API
+                const apiUrl = import.meta.env.VITE_RESULT_API_URL;
+                const year = new Date().getFullYear();
+
+                const response = await fetch(`${apiUrl}?gameId=${selectedGame.id}&year=${year}`);
+                const text = await response.text();
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                let json;
+                try {
+                    json = JSON.parse(text);
+                } catch (err) {
+                    setError("Invalid API response");
+                    setGameLoading(false);
+                    return;
+                }
+
+                if (json.success && json.data) {
+                    const transformedResults = json.data.results.map(result => ({
+                        id: result.drawNumber,
+                        draw_date: result.date,
+                        draw_time: result.time,
+                        winning_numbers: result.winning,
+                        machine_numbers: result.machine
+                    }));
+                    setGameResults(transformedResults);
+                } else {
+                    setError(json.message || "No past results available for this game.");
+                }
+
+                setGameLoading(false);
+            } catch (err) {
+                console.error("Error fetching game results:", err);
+                setError("Failed to load game results.");
+                setGameResults([]);
+                setGameLoading(false);
+            }
         };
-    };
+
+        fetchGameResults();
+    }, [game_name]);
 
     return (
         <div className="page-content">
             <div className="game-header">
-                <button onClick={onHomeClick} className="back-btn">
-                    <Home size={24} />
-                </button>
+                <Link to="/" className="back-btn">
+                <Home size={24} />
+                </Link>
                 <div>
-                    <h1 className="game-title">{selectedGame.game_name}</h1>
+                    <h1 className="game-title">{game ? game.game_name : "Game Results"}</h1>
                     <p className="game-subtitle">Complete results</p>
                 </div>
             </div>
 
-            {/* <Ad Unit GreenLotto_Home_Top /> */}
-            {/* <AdUnit slot={9150572957} /> */}
+            {/* Top Ad */}
+            {/* <AdUnit slot="9150572957" /> */}
 
-            {/* <div className="search-box">
-                <div className="search-input-group">
-                    <label className="search-label">Search by Date</label>
-                    <input
-                        type="date"
-                        value={searchDate}
-                        onChange={(e) => setSearchDate(e.target.value)}
-                        max={new Date().toISOString().split('T')[0]}
-                        className="search-input"
-                    />
-                </div>
-
-                <button onClick={handleSearch} className="search-btn">
-                    <Search size={18} />
-                        Search
-                </button>
-
-                {searchDate && (
-                    <button onClick={handleClearSearch} className="clear-btn">
-                        Clear
-                    </button>
-                )}
-            </div> */}
-
-            <GameTable 
-                results={gameResults} 
+            <GameTable
+                results={gameResults}
                 formatDate={formatDate}
-                loading={gameLoading} 
+                loading={gameLoading}
                 error={error}
-                gameName={selectedGame?.game_name}
+                gameName={game?.game_name}
             />
-            {/* <Ad Unit: GreenLotto_Bottom_Page /> */}
+
+            {/* Bottom Ad */}
             <AdUnit slot="9952179429" />
         </div>
     );
