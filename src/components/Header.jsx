@@ -1,6 +1,7 @@
 // src/components/Header.jsx
 import { Home, Menu, X, Archive, Info, Mail, UserPlus } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { slugify } from '../utils/slugify';
 import '../styles/Header.css';
 
 const Header = ({ mobileMenuOpen, setMobileMenuOpen, games }) => {
@@ -9,17 +10,26 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen, games }) => {
             <div className="header-container">
                 <div className="header-content">
                     <div className='brand-wrapper'>
-                        <img 
-                          className='logo' 
-                          src="https://res.cloudinary.com/ddatfadov/image/upload/v1749649983/VLB_logo_gpiyzr.png" 
-                          alt="logo" 
-                          width={40}
-                        />
-
-                        <Link to="/" className="brand-btn">
-                            <p className="brand-name">Visual Lotto Board</p>
-                            <h1 className="brand-subtitle">Green Lotto Results</h1>
-                        </Link>
+                      <a href="/">
+                          <div className='bn-wrapper' style={{ display: "flex", alignItems: 'center' }}>
+                                <img 
+                                    className='logo' 
+                                    src="https://res.cloudinary.com/ddatfadov/image/upload/v1749649983/VLB_logo_gpiyzr.png" 
+                                    alt="logo" 
+                                    width={35}
+                                  />
+                                <span className="brand-name">Visual Lotto Board</span>
+                          </div>
+                          <h1 className="brand-subtitle">Green Lotto Results</h1>
+                      </a>
+                        {/* <Link 
+                            to="/" 
+                            className="brand-btn"
+                            onClick={() => window.location.reload()}
+                            aria-label='Refresh Green Lotto Results'
+                        >
+                            
+                        </Link> */}
                     </div>
                   
                     <nav className="desktop-nav">
@@ -118,7 +128,7 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen, games }) => {
                     {games.slice(0, 8).map(game => (
                         <Link 
                             key={game.id} 
-                            to={`/game/result/${game.game_name.toLocaleLowerCase().replace(/ /, '-')}`} 
+                            to={`/game/result/${slugify(game.game_name)}`} 
                             className="mobile-menu-item game-name-item"
                             onClick={() => setMobileMenuOpen(false)}
                         >

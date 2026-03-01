@@ -1,6 +1,7 @@
 // src/components/ResultCard.jsx
 import { useNavigate } from "react-router-dom";
 import "../styles/ResultCard.css";
+import { slugify } from "../utils/slugify";
 
 const NumberBall = ({ number, type = "winning" }) => (
   <div className={`number-ball ${type}`}>
@@ -8,7 +9,7 @@ const NumberBall = ({ number, type = "winning" }) => (
   </div>
 );
 
-const ResultCard = ({ result, game }) => {
+const DayResultCard = ({ result, game }) => {
   const navigate = useNavigate();
 
   return (
@@ -44,7 +45,7 @@ const ResultCard = ({ result, game }) => {
       </div>
 
       <button
-        onClick={() => navigate(`/game/result/${game.game_name.toLocaleLowerCase().replace(/ /, '-')}`)}
+        onClick={() => navigate(`/game/result/${slugify(game.game_name)}`)}
         className="view-all-btn"
       >
         View All <b>{game.game_name}</b> Results
@@ -53,4 +54,4 @@ const ResultCard = ({ result, game }) => {
   );
 };
 
-export default ResultCard;
+export default DayResultCard;

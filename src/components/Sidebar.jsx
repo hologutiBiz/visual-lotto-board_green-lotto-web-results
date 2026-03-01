@@ -1,6 +1,7 @@
 // src/components/Sidebar.jsx
 import { TrendingUp } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { slugify } from "../utils/slugify";
 import "../styles/Sidebar.css";
 
 const Sidebar = ({ games }) => {
@@ -14,11 +15,11 @@ const Sidebar = ({ games }) => {
         </h3>
         <nav className="sidebar-nav">
           {games.map(game => {
-            const isActive = location.pathname === `/game/result/${game.game_name}`;
+            const isActive = location.pathname === `/game/result/${slugify(game.game_name)}`;
             return (
               <Link
                 key={game.id}
-                to={`/game/result/${game.game_name}`}
+                to={`/game/result/${slugify(game.game_name)}`}
                 className={`sidebar-link ${isActive ? 'active' : ''}`}
               >
                 {game.game_name}

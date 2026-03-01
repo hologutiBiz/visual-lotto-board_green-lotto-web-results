@@ -2,12 +2,15 @@
 import { useState, useEffect } from 'react';
 import { Clock, Search } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
-import ResultCard from '../components/ResultCard';
+// import ResultCard from '../components/DayResultCard';
+import DayResultCard from '../components/DayResultCard';
 import AdUnit from '../components/AdUnit';
+import SEO from '../components/SEO';
+import { slugify } from '../utils/slugify';
 import "../styles/HomePage.css";
 
 const HomePage = ({ todayResults, games, formatDate, onDateSearch }) => {
-    const [searchDate, setSearchDate] = useState('');
+    const [searchDate, setSearchDate] =  useState(''); 
     const [displayResults, setDisplayResults] = useState(todayResults);
     const [isSearching, setIsSearching] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -18,7 +21,6 @@ const HomePage = ({ todayResults, games, formatDate, onDateSearch }) => {
             alert('Please select a date');
             return;
         }
-
         setIsSearching(true);
         const results = await onDateSearch(searchDate);
         setDisplayResults(results);
@@ -40,6 +42,12 @@ const HomePage = ({ todayResults, games, formatDate, onDateSearch }) => {
 
     return (
         <div className="home-page">
+            <SEO
+                title="Green Lotto Results | Powered by Visual Lotto Board"
+                description="Check today's Green results for all games. Real-time winning and machine number for Naija Vag, Dream Number, Odogwu, UNLIMITED, Wazobia, Destiny, Faaji."
+                url="/"
+            />
+
             <h1 className="main-title">
                 Green Lotto Today Result: Daily Winning Number, Machine Number & Past Results
             </h1>
@@ -66,87 +74,85 @@ const HomePage = ({ todayResults, games, formatDate, onDateSearch }) => {
                 </div>
             </div>
 
-          {/* Search by Date */}
+            {/* Search by Date */}
             <div className="search-section">
                 <h3 className="search-title">
-                  <Search size={20} />
-                  Search Results by Date
+                    <Search size={20} />
+                    Search Results by Date
                 </h3>
                 <p className="search-description">
-                  Select a date to view that day's lottery results for all games
+                    Select a date to view that day's lottery results for all games
                 </p>
                 <div className="date-search-box">
-                  <div className="date-input-group">
-                    <label className="date-label">Select Date</label>
-                    <input
-                      type="date"
-                      value={searchDate}
-                      onChange={(e) => setSearchDate(e.target.value)}
-                      max={new Date().toISOString().split('T')[0]}
-                      className="date-input"
-                    />
-                  </div>
-                  <div className="search-actions">
-                      <button 
-                        onClick={handleDateSearch} 
-                        className="search-btn"
-                        disabled={isSearching}
-                      >
-                          <Search size={18} />
-                          {isSearching ? 'Searching...' : 'Search'}
-                      </button>
-                      {searchDate && (
-                        <button onClick={handleShowToday} className="today-btn">
-                          Show Today's Results
+                    <div className="date-input-group">
+                        <label className="date-label">Select Date</label>
+                        <input
+                            type="date"
+                            value={searchDate}
+                            onChange={(e) => setSearchDate(e.target.value)}
+                            max={new Date().toISOString().split('T')[0]}
+                            className="date-input"
+                        />
+                    </div>
+                    <div className="search-actions">
+                        <button
+                            onClick={handleDateSearch}
+                            className="search-btn"
+                            disabled={isSearching}
+                        >
+                            <Search size={18} />
+                            {isSearching ? 'Searching...' : 'Search'}
                         </button>
-                      )}
-                  </div>
+                        {searchDate && (
+                            <button onClick={handleShowToday} className="today-btn">
+                                Show Today's Results
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
 
-          {/* Ad Unit */}
-          <AdUnit slot="9150572957" />
+            {/* Ad Unit */}
+            <AdUnit slot="9150572957" />
 
-          {/* Results Section */}
-          <div className="today-section">
-            <div className="section-header">
-              <h2 className="section-title">
-                <Clock size={28} />
-                {searchDate ? 'Results for ' + formatDate(currentDate) : "Today's Results"}
-              </h2>
-              <span className="section-date">{formatDate(currentDate)}</span>
+            {/* Results Section */}
+            <div className="today-section">
+                <div className="section-header">
+                    <h2 className="section-title">
+                        <Clock size={28} />
+                        {searchDate ? 'Results for ' + formatDate(currentDate) : "Today's Results"}
+                    </h2>
+                    <span className="section-date">{formatDate(currentDate)}</span>
+                </div>
+
+                {displayResults.length > 0 ? (
+                    <div className="results-grid">
+                        {displayResults.map((result) => {
+                            const game = games.find(g => g.id === result.game_id);
+                            return game ? (
+                                <DayResultCard
+                                    key={result.id}
+                                    result={result}
+                                    game={game}
+                                    onViewAll={() => navigate(`/game/result/${slugify(game.game_name)}`)}
+                                />
+                            ) : null;
+                        })}
+                    </div>
+                ) : (
+                    <div className="no-results">
+                        <p>No results found for this date. Results may not be available yet.</p>
+                    </div>
+                )}
             </div>
 
-            {displayResults.length > 0 ? (
-              <div className="results-grid">
-                {displayResults.map((result) => {
-                  const game = games.find(g => g.id === result.game_id);
-                  return game ? (
-                    <ResultCard 
-                      key={result.id} 
-                      result={result} 
-                      game={game}
-                      onViewAll={() => navigate(`/game/result/${game.game_name}`)}
-                    />
-                  ) : null;
-                })}
-              </div>
-            ) : (
-              <div className="no-results">
-                <p>No results found for this date. Results may not be available yet.</p>
-              </div>
-            )}
-          </div>
-
-          {/* Bottom Ad */}
-          <AdUnit position="Bottom Banner" />
-
-          {/* Optional link to all results */}
-          {/* <div className="all-results-link">
-            <Link to="/gamelist">View All Results</Link>
-          </div> */}
+            {/* Bottom Ad */}
+            <AdUnit position="Bottom Banner" />
         </div>
-    );
+    )
 };
 
 export default HomePage;
+
+
+
