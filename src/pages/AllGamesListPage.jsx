@@ -18,9 +18,9 @@ const AllGamesListPage = ({ games }) => {
             <div className="page-header">
                 <TrendingUp size={32} className="header-icon" />
                 <div>
-                    <h1 className="page-title">All Game Results</h1>
+                    <h1 className="page-title">All Game Lists</h1>
                     <p className="page-subtitle">
-                        Browse historical results for all 16 Green Lotto games
+                        Browse all available Green Lotto games
                     </p>
                 </div>
             </div>

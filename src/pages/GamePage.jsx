@@ -81,9 +81,9 @@ const GamePage = ({ formatDate }) => {
     return (
         <div className="page-content">
             <SEO
-                title={game ? `${game.game_name} Result Today — Green Lotto Winning Numbers` : 'Game Results — Green Lotto'}
+                title={game ? `Green Lotto ${game.game_name} Results` : 'Game Results — Green Lotto'}
                 description={game
-                    ? `Check latest ${game.game_name} results. View today's winning numbers, machine numbers and complete draw history.`
+                    ? `View all ${game.game_name} past and latest results.`
                     : "View complete Green Lotto game results including winning numbers and machine numbers."
                 }
                 url={`/game/result/${game_name}`}

@@ -5,7 +5,7 @@ const SEO = ({ title, description, url, ogImage}) => {
     const siteOwner = 'by Visual Lotto Board';
     const baseUrl = 'https://green-lotto-result.visuallottoboard.com';
     const defaultDescription = "Check today's Green Lotto today results for all games. Real-time winning and machine number for Naija Vag, Dream Number, Odogwu, UNLIMITED, Wazobia, Destiny, Faaji, Champion.";
-    const defaultImage = '';
+    const defaultImage = 'https://res.cloudinary.com/ddatfadov/image/upload/v1772397339/Green-lotto_banner_wr8vrz.png';
 
     const fullTitle = title ? `${siteName} | ${siteOwner}` : siteName;
     const metaDescription = description || defaultDescription; 
@@ -27,9 +27,11 @@ const SEO = ({ title, description, url, ogImage}) => {
 
             {/* 3. X (Twitter Cards) */}
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content="Green Lotto Results Today 🟢" />
-            <meta name="twitter:description" content="Real-time Green Lotto draw results for 9AM, 1PM, 5PM, and 9PM." />
-            <meta name="twitter:image" content="https://yourwebsite.com/twitter-image.jpg" />
+            <meta name="twitter:site" content="@visuaLottoBoard" />
+            <meta name="twitter:title" content="Green Lotto Results | by Visual Lotto Board" />
+            <meta name="twitter:description" content="Check today's Green results for all games. Real-time winning and machine number for Naija Vag, Dream Number, Odogwu, UNLIMITED, Wazobia, Destiny, Faaji." />
+            <meta name="twitter:image" content="https://res.cloudinary.com/ddatfadov/image/upload/v1772397339/Green-lotto_banner_wr8vrz.png" />
+            <meta name="twitter:url" content="https://green-lotto-result.visuallottoboard.com" />
         </Helmet>
      );
 }

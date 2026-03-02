@@ -43,7 +43,7 @@ const HomePage = ({ todayResults, games, formatDate, onDateSearch }) => {
     return (
         <div className="home-page">
             <SEO
-                title="Green Lotto Results | Powered by Visual Lotto Board"
+                title="Green Lotto Results | by Visual Lotto Board"
                 description="Check today's Green results for all games. Real-time winning and machine number for Naija Vag, Dream Number, Odogwu, UNLIMITED, Wazobia, Destiny, Faaji."
                 url="/"
             />
