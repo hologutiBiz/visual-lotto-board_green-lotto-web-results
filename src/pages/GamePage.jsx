@@ -58,8 +58,8 @@ const GamePage = ({ formatDate }) => {
                         id: result.drawNumber,
                         draw_date: result.date,
                         draw_time: result.time,
-                        winning_numbers: result.winning,
-                        machine_numbers: result.machine
+                        winning_numbers: result.winning.map(w => w.number),
+                        machine_numbers: result.machine.map(m => m.number),
                     }));
                     setGameResults(transformedResults);
                 } else {
