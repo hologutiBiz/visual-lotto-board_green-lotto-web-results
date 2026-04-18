@@ -9,7 +9,6 @@ import SEO from "../components/SEO";
 import { getGames } from "../utils/supabase";
 import { slugify } from "../utils/slugify";
 import "../styles/GamePage.css";
-import AdCodeGlTop from "../components/google-ad-manager/adsterra/AdCodeGlTop";
 
 const GamePage = ({ formatDate }) => {
     const { game_name } = useParams();
