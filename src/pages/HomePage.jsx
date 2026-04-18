@@ -4,7 +4,8 @@ import { Clock, Search } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 // import ResultCard from '../components/DayResultCard';
 import DayResultCard from '../components/DayResultCard';
-import AdUnit from '../components/AdUnit';
+// import AdUnit from '../components/AdUnit';
+import AdCodeGlTop from '../components/google-ad-manager/adsterra/AdCodeGlTop';
 import SEO from '../components/SEO';
 import { slugify } from '../utils/slugify';
 import "../styles/HomePage.css";
@@ -113,7 +114,8 @@ const HomePage = ({ todayResults, games, formatDate, onDateSearch }) => {
             </div>
 
             {/* Ad Unit */}
-            <AdUnit slot="9150572957" />
+            {/* <AdUnit slot="9150572957" /> */}
+            <AdCodeGlTop />
 
             {/* Results Section */}
             <div className="today-section">
@@ -147,7 +149,7 @@ const HomePage = ({ todayResults, games, formatDate, onDateSearch }) => {
             </div>
 
             {/* Bottom Ad */}
-            <AdUnit position="Bottom Banner" />
+            {/* <AdUnit position="Bottom Banner" /> */}
         </div>
     )
 };

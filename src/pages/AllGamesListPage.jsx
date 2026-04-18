@@ -1,7 +1,8 @@
 // src/pages/AllGamesListPage.jsx
 import { ArrowRight, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import AdUnit from '../components/AdUnit';
+// import AdUnit from '../components/AdUnit';
+import AdCodeGlTop from '../components/google-ad-manager/adsterra/AdCodeGlTop';
 import SEO from '../components/SEO';
 import { slugify } from '../utils/slugify';
 import '../styles/AllResultsPage.css';
@@ -26,7 +27,8 @@ const AllGamesListPage = ({ games }) => {
             </div>
 
             {/* Ad Unit: GreenLotto_Home_Top */}
-            <AdUnit slot="9150572957" />
+            {/* <AdUnit slot="9150572957" /> */}
+            <AdCodeGlTop/>
 
             <div className="games-list">
                 {games.map((game, index) => (
@@ -55,7 +57,7 @@ const AllGamesListPage = ({ games }) => {
             </div>
 
             {/* Ad Unit: GreenLotto_Bottom_Page */}
-            <AdUnit slot="9952179429" />
+            {/* <AdUnit slot="9952179429" /> */}
 
             <div className="info-box">
                 <h3>About Historical Results</h3>

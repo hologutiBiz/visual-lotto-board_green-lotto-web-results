@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 // import { Home } from "lucide-react";
 import GameTable from "../components/GameTable";
-import AdUnit from "../components/AdUnit";
+// import AdUnit from "../components/AdUnit";
+import AdCodeGlTop from "../components/google-ad-manager/adsterra/AdCodeGlTop";
 import SEO from "../components/SEO";
 import { getGames } from "../utils/supabase";
 import { slugify } from "../utils/slugify";
 import "../styles/GamePage.css";
+import AdCodeGlTop from "../components/google-ad-manager/adsterra/AdCodeGlTop";
 
 const GamePage = ({ formatDate }) => {
     const { game_name } = useParams();
@@ -108,7 +110,9 @@ const GamePage = ({ formatDate }) => {
             />
 
             {/* Bottom Ad */}
-            <AdUnit slot="9952179429" />
+            {/* <AdUnit slot="9952179429" /> */}
+            <AdCodeGlTop />
+
         </div>
     );
 };
