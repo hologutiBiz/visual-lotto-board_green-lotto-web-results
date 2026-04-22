@@ -51,7 +51,7 @@ const GameTable = ({ results, formatDate, loading, error, gameName }) => {
                             
                             return (
                                 <tr key={normalized.id}>
-                                    <td className="sn-ref-cell">ref_{String(index + 1).padStart(2, '0')}</td>
+                                    <td className="sn-ref-cell">{normalized.serialNumber}</td>
                                     <td className="date-cell">{formatDate(normalized.date)}</td>
                                     <td className="winning">
                                         <div className="table-numbers">

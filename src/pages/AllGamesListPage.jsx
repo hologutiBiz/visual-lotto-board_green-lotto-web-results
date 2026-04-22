@@ -49,7 +49,7 @@ const AllGamesListPage = ({ games }) => {
                         {/* Mid-list Ad injection */}
                         {index === 7 && (
                             <div className='mid-list-ad' style={{ width: '100%', gridColumn: '1 / -1' }}>
-                                <AdUnit slot="7215508900" />
+                                {/* <AdUnit slot="7215508900" /> */}
                             </div>
                         )}
                     </div>
