@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 // import { Home } from "lucide-react";
 import GameTable from "../components/GameTable";
-// import AdUnit from "../components/AdUnit";
-import AdCodeGlTop from "../components/google-ad-manager/adsterra/AdCodeGlTop";
+import AdUnit from "../components/AdUnit";
 import SEO from "../components/SEO";
 import { getGames } from "../utils/supabase";
 import { slugify } from "../utils/slugify";
@@ -109,9 +108,7 @@ const GamePage = ({ formatDate }) => {
             />
 
             {/* Bottom Ad */}
-            {/* <AdUnit slot="9952179429" /> */}
-            <AdCodeGlTop />
-
+            <AdUnit slot="9952179429" />
         </div>
     );
 };
