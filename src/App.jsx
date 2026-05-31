@@ -6,7 +6,6 @@ import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import GamePage from './pages/GamePage';
-//import AllResultsPage from './pages/AllGamesListPage';
 import AllGamesListPage from './pages/AllGamesListPage';
 import { getGames, getTodayResults, getResultsByDate } from './utils/supabase';
 import './App.css';

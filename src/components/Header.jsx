@@ -2,6 +2,7 @@
 import { Home, Menu, X, Archive, Info, Mail, UserPlus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { slugify } from '../utils/slugify';
+import AppPromoBanner from './ad-manager/AppPromoBanner';
 import '../styles/Header.css';
 
 const Header = ({ mobileMenuOpen, setMobileMenuOpen, games }) => {
@@ -31,6 +32,9 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen, games }) => {
                             
                         </Link> */}
                     </div>
+
+                    <AppPromoBanner />
+
                   
                     <nav className="desktop-nav">
                         <Link to="/" className="nav-link">

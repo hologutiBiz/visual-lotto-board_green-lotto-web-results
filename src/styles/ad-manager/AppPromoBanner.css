@@ -1,0 +1,79 @@
+/* src/styles/AppPromoBanner.css */
+
+.app-promo-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f4f9f5; /* Light green tint tint to make it look native but soft */
+    border-bottom: 1px solid #16a34a; /* Matches your brand green */
+    padding: 0.6rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.banner-close-btn {
+    background: none;
+    border: none;
+    color: #666666;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 10px 0 0;
+    line-height: 1;
+}
+
+.banner-app-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.banner-app-logo {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%; /* Matches your .logo rule in Header.css */
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.banner-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.banner-title {
+    color: #2282c7; /* Matches brand-name text color */
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.banner-subtitle {
+    color: #16a34a; /* Matches brand-subtitle color */
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.banner-install-btn {
+    display: flex;
+    align-items: center;
+    background-color: #16a34a;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.banner-install-btn:hover {
+    background-color: #15803d;
+}
+
+/* Balance check: adjustments if mobile view triggers custom spacing rules */
+@media screen and (max-width: 700px) {
+    .app-promo-banner {
+        padding: 0.5rem 0.75rem;
+    }
+}
