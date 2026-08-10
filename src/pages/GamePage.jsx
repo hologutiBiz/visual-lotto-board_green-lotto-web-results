@@ -1,7 +1,6 @@
 // src/pages/GamePage.jsx
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-// import { Home } from "lucide-react";
 import GameTable from "../components/GameTable";
 import AdUnit from "../components/AdUnit";
 import SEO from "../components/SEO";

@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="container">
                 <div className="footer-content">
                     <h3 className="footer-title">Visual Lotto Board</h3>
-                    <p className="footer-subtitle">...Your lotto Result, Material, Sales and Payment companion</p>
+                    <p className="footer-subtitle">...Your lotto Result companion</p>
                     
                     {/* Disclaimer Section */}
                     <div className="footer-disclaimer">
