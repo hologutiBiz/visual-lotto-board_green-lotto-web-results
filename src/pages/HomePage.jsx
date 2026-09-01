@@ -2,10 +2,8 @@
 import { useState, useEffect } from 'react';
 import { Clock, Search } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
-// import ResultCard from '../components/DayResultCard';
 import DayResultCard from '../components/DayResultCard';
 import AdUnit from '../components/AdUnit';
-// import AdCodeGlTop from '../components/google-ad-manager/adsterra/AdCodeGlTop';
 import SEO from '../components/SEO';
 import { slugify } from '../utils/slugify';
 import "../styles/HomePage.css";
