@@ -18,6 +18,7 @@ const GameTable = ({ results, formatDate, loading, error, gameName }) => {
             return {
                 id: result.drawNumber || result.date, // Use drawNumber or date as fallback
                 date: result.date,
+                serialNumber: result.serialNumber,
                 winning: result.winning,
                 machine: result.machine
             };
@@ -46,7 +47,7 @@ const GameTable = ({ results, formatDate, loading, error, gameName }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {results.map((result, index) => {
+                        {results.map((result) => {
                             const normalized = normalizeResult(result);
                             
                             return (
