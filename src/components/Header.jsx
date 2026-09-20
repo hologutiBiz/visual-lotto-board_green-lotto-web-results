@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { slugify } from '../utils/slugify';
 import AppPromoBanner from './ad-manager/AppPromoBanner';
 import '../styles/Header.css';
+import appLogo from '../assets/logo.png';
 
 const Header = ({ mobileMenuOpen, setMobileMenuOpen, games }) => {
     return ( 
@@ -15,7 +16,7 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen, games }) => {
                           <div className='bn-wrapper' style={{ display: "flex", alignItems: 'center' }}>
                                 <img 
                                     className='logo' 
-                                    src="https://res.cloudinary.com/ddatfadov/image/upload/v1749649983/VLB_logo_gpiyzr.png" 
+                                    src={appLogo}
                                     alt="logo" 
                                     width={35}
                                   />
