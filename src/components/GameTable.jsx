@@ -8,19 +8,28 @@ const GameTable = ({ results, formatDate, loading, error, gameName }) => {
             return {
                 id: result.id,
                 date: result.draw_date,
-                winning: result.winning_numbers,
-                machine: result.machine_numbers
+                serialNumber: result.serialNumber ?? result.id,
+                winning: Array.isArray(result.winning_numbers)
+                    ? result.winning_numbers.map(num => (typeof num === 'object' ? num.number : num))
+                    : result.winning_numbers,
+                machine: Array.isArray(result.machine_numbers)
+                    ? result.machine_numbers.map(num => (typeof num === 'object' ? num.number : num))
+                    : result.machine_numbers
             };
         }
         
         // If it's from API (historical results from JSON)
         if (result.date && result.winning) {
             return {
-                id: result.drawNumber || result.date, // Use drawNumber or date as fallback
+                id: result.drawNumber || result.date,
                 date: result.date,
-                serialNumber: result.serialNumber,
-                winning: result.winning,
-                machine: result.machine
+                serialNumber: result.serialNumber ?? result.drawNumber ?? result.date,
+                winning: Array.isArray(result.winning)
+                    ? result.winning.map(num => (typeof num === 'object' ? num.number : num))
+                    : result.winning,
+                machine: Array.isArray(result.machine)
+                    ? result.machine.map(num => (typeof num === 'object' ? num.number : num))
+                    : result.machine
             };
         }
         

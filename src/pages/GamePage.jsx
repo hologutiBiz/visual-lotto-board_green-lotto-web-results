@@ -46,7 +46,7 @@ const GamePage = ({ formatDate }) => {
                 let json;
                 try {
                     json = JSON.parse(text);
-                } catch (err) {
+                } catch {
                     setError("Invalid API response");
                     setGameLoading(false);
                     return;
@@ -57,6 +57,7 @@ const GamePage = ({ formatDate }) => {
                         id: result.drawNumber,
                         draw_date: result.date,
                         draw_time: result.time,
+                        serialNumber: result.serialNumber,
                         winning_numbers: result.winning.map(w => w.number),
                         machine_numbers: result.machine.map(m => m.number),
                     }));
